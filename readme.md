@@ -28,3 +28,8 @@ Ce projet est une application web développée pour le Zoo Arcadia, situé en Fr
 5. **Création d'un projet :**
    - Créez un nouveau dossier dans le répertoire `htdocs` de votre installation XAMPP.
    - Ouvrez ce dossier dans Visual Studio Code.
+
+## Structure du projet
+
+Le projet est organisé de la même manière que dans l'exemple précédent :
+
