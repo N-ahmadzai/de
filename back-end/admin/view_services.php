@@ -1,75 +1,76 @@
+<?php
+require_once('../config/db_connect.php');
+// Vérifier si une session est active avant de démarrer une nouvelle session
+
+
+
+try {
+    $pdo = getPDO();
+    $stmt = $pdo->query("SELECT * FROM services");
+    $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $error_message = "Erreur : " . $e->getMessage();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <title>Gérer les services</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Assurez-vous d'avoir un fichier CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <title>Afficher les services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/service.css">
 </head>
+
 <body>
-    <h1>Gérer les services</h1>
+    <div class="container">
+ <!-- Afficher les messages d'erreur ou de succès -->
+ <?php if (isset($_GET['success'])) : ?>
+            <div class="alert alert-success"><?php echo htmlspecialchars($_GET['success']); ?></div>
+        <?php endif; ?>
 
-    <?php if (isset($_SESSION['success_message'])): ?>
-        <div class="success-message">
-            <?php echo htmlspecialchars($_SESSION['success_message']); ?>
-        </div>
-        <?php unset($_SESSION['success_message']); ?>
-    <?php endif; ?>
-
-    <?php if (isset($_SESSION['error_message'])): ?>
-        <div class="error-message">
-            <?php echo htmlspecialchars($_SESSION['error_message']); ?>
-        </div>
-        <?php unset($_SESSION['error_message']); ?>
-    <?php endif; ?>
-
-    <!-- Formulaire pour créer un nouveau service -->
-    <h2>Créer un nouveau service</h2>
-    <form method="POST" action="manage_services.php">
-        <input type="hidden" name="action" value="create">
-        <label for="name">Nom du service:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
-        <button type="submit">Créer</button>
-    </form>
-
-    <!-- Liste des services existants avec options de mise à jour et suppression -->
-    <h2>Services existants</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($services as $service): ?>
+        <?php if (isset($_GET['error'])) : ?>
+            <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
+        <?php endif; ?>
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td><?php echo htmlspecialchars($service['id']); ?></td>
-                    <td><?php echo htmlspecialchars($service['name']); ?></td>
-                    <td><?php echo htmlspecialchars($service['description']); ?></td>
-                    <td>
-                        <!-- Formulaire de mise à jour -->
-                        <form method="POST" action="manage_services.php" style="display:inline;">
-                            <input type="hidden" name="action" value="update">
-                            <input type="hidden" name="service_id" value="<?php echo htmlspecialchars($service['id']); ?>">
-                            <input type="text" name="name" value="<?php echo htmlspecialchars($service['name']); ?>" required>
-                            <textarea name="description" required><?php echo htmlspecialchars($service['description']); ?></textarea>
-                            <button type="submit">Mettre à jour</button>
-                        </form>
-
-                        <!-- Formulaire de suppression -->
-                        <form method="POST" action="manage_services.php" style="display:inline;">
-                            <input type="hidden" name="action" value="delete">
-                            <input type="hidden" name="service_id" value="<?php echo htmlspecialchars($service['id']); ?>">
-                            <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?');">Supprimer</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Photo</th>
+                    <th>Actions</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($services as $service) : ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($service['id']); ?></td>
+                        <td><?php echo htmlspecialchars($service['name']); ?></td>
+                        <td><?php echo htmlspecialchars($service['description']); ?></td>
+                        <td>
+                            <?php if (!empty($service['photo'])) : ?>
+                                <img src="uploads/<?php echo htmlspecialchars($service['photo']); ?>" alt="Photo du service" width="50">
+                            <?php else : ?>
+                                Pas de photo
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <a href="update_service.php?id=<?php echo $service['id']; ?>"><i class='bx bx-edit' style='color: #2EB872;'></i></a>
+                            <a href="manage_services.php?id=<?php echo $service['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');"><i class='bx bxs-trash' style='color: #2EB872;'></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
+
 </html>

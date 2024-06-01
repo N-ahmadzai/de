@@ -1,0 +1,29 @@
+
+
+.custom-select:hover, .custom-select:focus {
+    background-color: #28a745;
+    color: white;
+}
+
+.custom-select option {
+    background-color: #2EB872;
+    color: white;
+}
+
+.custom-select option:hover {
+    background-color: #28a745;
+}
+
+.custom-input:hover, .custom-input:focus {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success {
+    background-color: #2EB872;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #28a745;
+}

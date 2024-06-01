@@ -423,7 +423,8 @@ body {
 }
 
 .bxs-calendar-check,.bxs-group, .bxs-dollar-circle{
-	color: whitesmoke !important;
+	color: var(--light) !important;
+	background-color: var(--green) !important;
 }
 #content main .box-info li:nth-child(1) .bx {
 	background: var(--light-green);
@@ -665,17 +666,22 @@ input, select {
     background-color: var(--green);
 }
 
-.error-message {
-    color: var(--light);
+
+.error_message {
+    color:#000;
     margin: 20px 0px 20px 0px;
+    padding: 20px 20px;
     text-align: center;
 }
 
-.success-message {
-    color: var(--light);
+.success_message {
+    color:#000;
     margin: 20px 0px 20px 0px;
+    padding: 20px 20px;
     text-align: center;
 }
+
+
 
 
 /* pagination */
@@ -756,9 +762,6 @@ tr:hover {
     color: #fff;
 }
 
-.error-message {
-    color: var(--red);
-}
 
 .actions a {
     margin-right: 10px;
@@ -773,3 +776,5 @@ tr:hover {
 .actions i {
     font-size: 16px;
 }
+
+

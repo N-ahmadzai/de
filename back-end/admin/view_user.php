@@ -59,13 +59,15 @@ $start_index = ($current_page - 1) * $users_per_page;
 $current_page_users = array_slice($filtered_users, $start_index, $users_per_page);
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau d'utilisateurs avec pagination et recherche</title>
+    <title>Tableau des membres avec pagination et recherche</title>
 </head>
 
 <body>
@@ -109,13 +111,13 @@ $current_page_users = array_slice($filtered_users, $start_index, $users_per_page
 
             <!-- Affichage des messages -->
             <?php if (isset($_GET['status']) && $_GET['status'] === 'success') : ?>
-                <div class="success-message">
+                <div class="success_message alert alert-success">
                     <?php echo htmlspecialchars($_GET['message']); ?>
                 </div>
             <?php endif; ?>
 
             <?php if (isset($_GET['status']) && $_GET['status'] === 'error') : ?>
-                <div class="error-message">
+                <div class="error_message alert alert-danger">
                     <?php echo htmlspecialchars($_GET['message']); ?>
                 </div>
             <?php endif; ?>

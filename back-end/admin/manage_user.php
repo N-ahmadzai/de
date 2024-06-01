@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <title>Créer un membre</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/dashboard.css">
-</head>
-
-<body>
     <!-- Gérer la création de un membre -->
-<?php
+    <?php
+    session_start();
     require_once('../config/db_connect.php');
     require_once('delete_user.php');
     // Initialiser les variables pour conserver les valeurs des champs
@@ -76,18 +64,28 @@
     }
 
 
+?>
 
+<!DOCTYPE html>
+<html lang="fr">
 
-    ?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <title>Créer un membre</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
 
-
+<body>
     <div class="container-fluid">
         <!-- SIDEBAR -->
         <section id="sidebar">
-            <a href="#" class="brand">
-                <i class='bx bxs-smile'></i>
-                <span class="text">AdminHub</span>
-            </a>
+        <a href="admin_dashboard.php" class="brand">
+        <i class='bx bxs-smile'></i>
+            <span class="text">Arcadia</span>
+        </a>
             <ul class="side-menu top">
                 <li>
                     <a href="admin_dashboard.php">
@@ -96,29 +94,29 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="create_user.php">
-                        <i class='bx bxs-message-square-add'></i>
+                    <a href="manage_user.php">
+                    <i class='bx bxs-user-account'></i>
                         <span class="text">Membre</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="manage_services.php">
                         <i class='bx bxs-doughnut-chart'></i>
-                        <span class="text">Analytics</span>
+                        <span class="text">Service</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class='bx bxs-message-dots'></i>
-                        <span class="text">Message</span>
+                    <a href="manage_horaires.php">
+                    <i class='bx bxs-hourglass' ></i>
+                        <span class="text">Horaire</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class='bx bxs-group'></i>
-                        <span class="text">Team</span>
-                    </a>
-                </li>
+                <a href="manage_horaires.php">
+                <i class='bx bxs-hourglass' ></i>
+                    <span class="text">Horaires</span>
+                </a>
+            </li>
             </ul>
             <ul class="side-menu">
                 <li>
@@ -140,10 +138,24 @@
         <!-- CONTENU -->
         <section id="content">
             <main>
+            <div class="head-title">
+                    <div class="left">
+                        <h1>Gérer les membres</h1>
+                        <ul class="breadcrumb">
+                            <li>
+                                <a class="active" href="admin_dashboard.php">Tableau de borad</a>
+                            </li>
+                            <li><i class='bx bx-chevron-right'></i></li>
+                            <li>
+                                <a class="active" href="manage_user.php">Membres</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="table-data">
                     <div class="order">
                         <div class="head">
-                            <a href="create_user.php">
+                            <a href="manage_user.php">
                                 <h3>Créer un nouveau membre</h3>
                             </a>
                         </div>
@@ -166,17 +178,17 @@
                                 <label for="name" class="form-label">Nom :</label>
                                 <input type="text" name="name" class="form-control" required value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
                             </div>
-                            <div class="col-12">
-                                <button class="btn btn-success submit" type="submit">Envoyer</button>
-                            </div>
+                            
+                            <button class="btn btn-success submit" type="submit">Créer</button>
+                            
                         </form>
                         <!-- Afficher les messages d'erreur ou de succès -->
                         <?php if (!empty($error_message)) : ?>
-                            <div type="button" class="error-message btn btn-danger"><?php echo $error_message; ?></div>
+                            <div  class="error_message alert alert-danger"><?php echo $error_message; ?></div>
                         <?php endif; ?>
 
                         <?php if (!empty($success_message)) : ?>
-                            <div type="button" class="success-message btn btn-success"><?php echo $success_message; ?></div>
+                            <div class="success_message alert alert-success"><?php echo $success_message; ?></div>
                         <?php endif; ?>
                     </div>
                     <div class="todo">

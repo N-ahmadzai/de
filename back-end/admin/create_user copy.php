@@ -172,11 +172,11 @@
                         </form>
                         <!-- Afficher les messages d'erreur ou de succès -->
                         <?php if (!empty($error_message)) : ?>
-                            <div type="button" class="error-message btn btn-danger"><?php echo $error_message; ?></div>
+                            <div type="button" class="error_message alert alert-danger"><?php echo $error_message; ?></div>
                         <?php endif; ?>
 
                         <?php if (!empty($success_message)) : ?>
-                            <div type="button" class="success-message btn btn-success"><?php echo $success_message; ?></div>
+                            <div type="button" class="success_message alert alert-success"><?php echo $success_message; ?></div>
                         <?php endif; ?>
                     </div>
                     <div class="todo">

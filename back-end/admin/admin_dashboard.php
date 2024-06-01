@@ -21,6 +21,7 @@ try {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,63 +29,82 @@ try {
     <title>AdminHub</title>
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
+
 <body>
 
 
     <!-- SIDEBAR -->
     <section id="sidebar">
-		<a href="#" class="brand">
-			<i class='bx bxs-smile'></i>
-			<span class="text">AdminHub</span>
-		</a>
-		<ul class="side-menu top">
-			<li class="active">
-				<a href="#">
-					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Dashboard</span>
-				</a>
-			</li>
-			<li>
-				<a href="create_user.php">
-                <i class='bx bxs-message-square-add'></i>
-					<span class="text">Membres</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Analytics</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Message</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-group' ></i>
-					<span class="text">Team</span>
-				</a>
-			</li>
-		</ul>
-		<ul class="side-menu">
-			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
-			</li>
-		</ul>
-	</section>
-	<!-- SIDEBAR -->
+        <a href="admin_dashboard.php" class="brand">
+        <i class='bx bxs-smile'></i>
+            <span class="text">Arcadia</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <a href="#">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage_user.php">
+                <i class='bx bxs-user-account' ></i>
+                    <span class="text">Membres</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage_services.php">
+                    <i class='bx bxs-doughnut-chart'></i>
+                    <span class="text">Service</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage_horaires.php">
+                 <i class='bx bxs-hourglass' ></i>
+                    <span class="text">Horaires</span>
+                </a>
+            </li>
+            <li>
+                <a href="manage_horaires.php">
+                <i class='bx bxs-hourglass' ></i>
+                    <span class="text">Horaires</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>   
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#">
+                    <i class='bx bxs-cog'></i>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bxs-log-out-circle'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
 
 
     <!-- CONTENU -->
@@ -151,15 +171,17 @@ try {
                 <li>
                     <i class='bx bxs-group'></i>
                     <span class="text">
-                         <!-- Affichage du nombre total d'utilisateurs -->
-                        <h3>Total des membres : <p><?php echo $total_users; ?></p></h3>
+                        <!-- Affichage du nombre total d'utilisateurs -->
+                        <h3>Total des membres : <p><?php echo $total_users; ?></p>
+                        </h3>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-dollar-circle'></i>
                     <span class="text">
-                        <h3>$2543</span>
-                        <p>Ventes Totales</p>
+                        <h3>$2543
+                    </span>
+                    <p>Ventes Totales</p>
                     </span>
                 </li>
             </ul>
@@ -214,5 +236,5 @@ try {
 
     <script src="js/script.js"></script>
 </body>
-</html>
 
+</html>

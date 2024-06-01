@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <title>Mise à jour</title>
+    <title>Mise à jour membres</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
@@ -30,7 +30,7 @@
 
                 $stmt = $pdo->prepare("UPDATE users SET email = ?, role = ?, name = ? WHERE id = ?");
                 if ($stmt->execute([$email, $role, $name, $id])) {
-                    $success_message = "membre mis à jour avec succès.";
+                    $success_message = "Membre mis à jour avec succès.";
                 } else {
                     $error_message = "Erreur lors de la mise à jour.";
                 }
@@ -39,7 +39,7 @@
             $error_message = "Erreur : " . $e->getMessage();
         }
     } else {
-        header("Location: create_user.php");
+        header("Location: manage_user.php");
         exit;
     }
 
@@ -52,14 +52,15 @@
     } catch (PDOException $e) {
         $error_message = "Erreur : " . $e->getMessage();
     }
+    
     ?>
     <div class="container-fluid">
         <!-- SIDEBAR -->
         <section id="sidebar">
-            <a href="#" class="brand">
-                <i class='bx bxs-smile'></i>
-                <span class="text">AdminHub</span>
-            </a>
+        <a href="admin_dashboard.php" class="brand">
+        <i class='bx bxs-smile'></i>
+            <span class="text">Arcadia</span>
+        </a>
             <ul class="side-menu top">
                 <li>
                     <a href="admin_dashboard.php">
@@ -68,29 +69,35 @@
                     </a>
                 </li>
                 <li>
-                    <a href="create_user.php">
-                        <i class='bx bxs-shopping-bag-alt'></i>
+                    <a href="manage_user.php">
+                    <i class='bx bxs-user-account'></i>
                         <span class="text">Membre</span>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="#">
-                        <i class='bx bxs-doughnut-chart'></i>
+                    <a href="update_user.php">
+                    <i class='bx bxs-user-account'></i>
                         <span class="text">Mise a jour d'un membre</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class='bx bxs-message-dots'></i>
-                        <span class="text">Message</span>
+                    <a href="manage_services.php">
+                        <i class='bx bxs-doughnut-chart'></i>
+                        <span class="text">Service</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class='bx bxs-group'></i>
-                        <span class="text">Team</span>
+                    <a href=""manage_horaires.php>
+                    <i class='bx bxs-hourglass' ></i>
+                        <span class="text">Horaire</span>
                     </a>
                 </li>
+                <li>
+                <a href="manage_horaires.php">
+                <i class='bx bxs-hourglass' ></i>
+                    <span class="text">Horaires</span>
+                </a>
+            </li>
             </ul>
             <ul class="side-menu">
                 <li>
@@ -112,47 +119,78 @@
         <!-- CONTENU -->
         <section id="content">
             <main>
+            <div class="head-title">
+                    <div class="left">
+                        <h1>Gérer les membres</h1>
+                        <ul class="breadcrumb">
+                            <li>
+                                <a class="active" href="admin_dashboard.php">Tableau de borad</a>
+                            </li>
+                            <li><i class='bx bx-chevron-right'></i></li>
+                            <li>
+                                <a class="active" href="manage_user.php">Membres</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="table-data">
                     <div class="order">
                         <div class="head">
-                            <a href="create_user.php">
+                            <a href="manage_user.php">
                                 <h3>Créer un nouveau membre</h3>
                             </a>
                         </div>
-                        <!-- Formulaire de création d'utilisateur -->
-                        <form method="POST" action="">
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email :</label>
-                                <input type="email" name="email" class="form-control" required value="<?php echo htmlspecialchars($user['email']); ?>">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Mot de passe :</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <select class="form-select" name="role" aria-label="Default select example" required>
-                                <option value="">Choisir un rôle</option>
-                                <option value="employe" <?php echo $user['role'] === 'employee' ? 'selected' : ''; ?>>Employé</option>
-                                <option value="veterinaire" <?php echo $user['role'] === 'veterinarian' ? 'selected' : ''; ?>>Vétérinaire</option>
-                            </select>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Nom :</label>
-                                <input type="text" name="name" class="form-control" required value="<?php echo htmlspecialchars($user['name']); ?>">
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-success submit" type="submit">Mettre à jour</button>
-                            </div>
-                        </form>
-                        <!-- Afficher les messages d'erreur ou de succès -->
-                        <?php if (!empty($error_message)) : ?>
-                            <div type="button" class="error-message btn btn-danger"><?php echo $error_message; ?></div>
+                        <!-- Formulaire de mise à jour de l'utilisateur -->
+                    <form method="POST" action="">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email :</label>
+                            <input type="email" name="email" class="form-control" required value="<?php echo htmlspecialchars($user['email']); ?>">
+                        </div>
+                        <!-- Je présume que vous avez un champ "password" pour la mise à jour du mot de passe -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Nouveau mot de passe :</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <select class="form-select" name="role" aria-label="Default select example" required>
+                            <option value="">Choisir un rôle</option>
+                            <option value="employe" <?php echo $user['role'] === 'employee' ? 'selected' : ''; ?>>Employé</option>
+                            <option value="veterinaire" <?php echo $user['role'] === 'veterinarian' ? 'selected' : ''; ?>>Vétérinaire</option>
+                        </select>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nom :</label>
+                            <input type="text" name="name" class="form-control" required value="<?php echo htmlspecialchars($user['name']); ?>">
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-success submit" type="submit">Mettre à jour</button>
+                        </div>
+                    </form>
+                      
+                    </div>
+                   
+                    <div class="todo">
+                        <ul class="todo-list">
+                            <li class="completed">
+                                <h3>Liste des membres</h3>
+                                <i class='bx bx-list-ul'></i>
+                            </li>
+                            <!-- Autres tâches -->
+                        </ul>
+
+                          <!-- Afficher les messages d'erreur ou de succès -->
+                          <?php if (!empty($error_message)) : ?>
+                            <div type="button" class="error_message alert alert-danger"><?php echo $error_message; ?></div>
                         <?php endif; ?>
 
                         <?php if (!empty($success_message)) : ?>
-                            <div type="button" class="success-message btn btn-success"><?php echo $success_message; ?></div>
+                            <div type="button" class="success_message alert alert-success"><?php echo $success_message; ?></div>
                         <?php endif; ?>
-                    </div>
-                    <div class="todo">
 
+
+                        <!-- inclure la page afficher les membres -->
+                        <?php include_once ('view_services.php') ?>
+
+
+                    </div>
                     </div>
             </main>
         </section>
