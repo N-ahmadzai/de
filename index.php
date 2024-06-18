@@ -10,26 +10,17 @@
   <!-- Favicon -->
   <link href="front-end/img/logo.png" rel="logo icon" />
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Quicksand:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
 
-    <!-- Icon Font Stylesheet -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
-<!-- Libraries Stylesheet -->
-<link href="front-end/lib/animate/animate.min.css" rel="stylesheet" />
+  <!-- Libraries Stylesheet -->
+  <link href="front-end/lib/animate/animate.min.css" rel="stylesheet" />
   <link href="front-end/lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
   <link href="front-end/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
@@ -105,9 +96,9 @@
         </div>
         <a href="front-end/contact.php" class="nav-item nav-link">Contact</a>
         <a href="back-end/login/login.php" class="nav-item nav-link">Connexion</a>
-        </div>
       </div>
-      <a href="" class="btn btn-primary">Buy Ticket<i class="fa fa-arrow-right ms-3"></i></a>
+    </div>
+    <a href="" class="btn btn-primary">Buy Ticket<i class="fa fa-arrow-right ms-3"></i></a>
     </div>
   </nav>
   <!-- Navbar End -->
@@ -142,7 +133,7 @@
           </div>
         </div>
 
-        
+
       </div>
     </div>
   </div>
@@ -645,16 +636,48 @@
           <a class="btn btn-link" href="">Terms & Condition</a>
           <a class="btn btn-link" href="">Support</a>
         </div>
+
         <div class="col-lg-3 col-md-6">
-          <h5 class="text-light mb-4">Newsletter</h5>
-          <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-          <div class="position-relative mx-auto" style="max-width: 400px">
-            <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
-            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">
-              SignUp
-            </button>
-          </div>
+    <h5 class="text-light mb-2">Laisser un avis</h5>
+    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+
+    <!-- Afficher les messages de succès ou d'erreur -->
+    <?php if (isset($_GET['success'])) : ?>
+        <div class="alert alert-success">
+            <?php echo htmlspecialchars($_GET['success']); ?>
         </div>
+    <?php endif; ?>
+    <?php if (isset($_GET['error'])) : ?>
+        <div class="alert alert-danger">
+            <?php echo htmlspecialchars($_GET['error']); ?>
+        </div>
+    <?php endif; ?>
+
+    <form method="post" action="./back-end/models/employer/submit_comment.php" id="avis-section" onsubmit="return validateForm();">
+        <div class="row g-3">
+            <div class="col-md-12">
+                <div> 
+                    <input type="text" class="form-control bg-light border-0" id="pseudo" name="pseudo" required />
+                    <label class="form-control" for="pseudo">Pseudo :</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <div>
+                    <textarea class="form-control bg-light border-0" placeholder="Laisser un avis" id="avis" name="avis" rows="3" required></textarea>
+                    <label class="form-control" for="avis">Avis :</label>
+                    <div id="wordCount" class="form-text">0/150 mots</div>
+                </div>
+            </div>
+            <div class="col-12">
+                <!-- Bouton d'envoi -->
+                <button class="btn btn-primary w-100 py-3" type="submit">
+                    Envoyer
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
       </div>
     </div>
     <div class="container">
@@ -677,15 +700,13 @@
   </div>
   <!-- Footer End -->
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
-      ><i class="bi bi-arrow-up"></i
-    ></a>
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="front-end/lib/wow/wow.min.js"></script>
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="front-end/lib/wow/wow.min.js"></script>
   <script src="front-end/lib/easing/easing.min.js"></script>
   <script src="front-end/lib/waypoints/waypoints.min.js"></script>
   <script src="front-end/lib/counterup/counterup.min.js"></script>
@@ -694,5 +715,8 @@
 
   <!-- Template Javascript -->
   <script src="front-end/js/main.js"></script>
-  </body>
+  <script src="./front-end/js/avis.js"></script>
+
+</body>
+
 </html>

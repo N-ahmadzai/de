@@ -51,9 +51,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             if($role === 'admin'){
                                 header("location: ../admin/admin_dashboard.php");
                             } elseif($role === 'veterinaire'){
-                                header("location: ../models/employer/veterinaire/veterinaire_dashboard.php");
+                                header("location: ../models/veterinaire/veterinaire_dashboard.php");
                             } elseif($role === 'employe'){
-                                header("location: ../models/employer/employer_dashboard.php");
+                                header("location: ../models/employer/employe_dashboard.php");
                             }
                         } else {
                             $password_err = "Le mot de passe n'est pas valide.";
@@ -93,64 +93,47 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <img src="images/img-01.png" alt="IMG">
                 </div>
                 <form class="login100-form validate-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <span class="login100-form-title">
-        Member Login
-    </span>
+                    <span class="login100-form-title">Member Login</span>
 
-    <div class="wrap-input100 validate-input <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
-        <select class="input100" name="role" required>
-            <option value="">Choisir un rôle</option>
-            <option value="admin">Admin</option>
-            <option value="veterinaire">Vétérinaire</option>
-            <option value="employe">Employé</option>
-        </select>
-        <span class="focus-input100"></span>
-        <span class="symbol-input100">
-            <i class="fa fa-user" aria-hidden="true"></i>
-        </span>
-        <span class="help-block"><?php echo $role_err; ?></span>
-    </div>
+                    <div class="wrap-input100 validate-input <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
+                        <select class="input100" name="role" required>
+                            <option value="">Choisir un rôle</option>
+                            <option value="admin">Admin</option>
+                            <option value="veterinaire">Vétérinaire</option>
+                            <option value="employe">Employé</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100"><i class="fa fa-user" aria-hidden="true"></i></span>
+                        <span class="help-block"><?php echo $role_err; ?></span>
+                    </div>
 
-    <div class="wrap-input100 validate-input <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-        <input class="input100" type="text" name="email" placeholder="Email" value="<?php echo $email; ?>" required>
-        <span class="focus-input100"></span>
-        <span class="symbol-input100">
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-        </span>
-        <span class="help-block"><?php echo $email_err; ?></span>
-    </div>
+                    <div class="wrap-input100 validate-input <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                        <input class="input100" type="text" name="email" placeholder="Email" value="<?php echo $email; ?>" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                        <span class="help-block"><?php echo $email_err; ?></span>
+                    </div>
 
-    <div class="wrap-input100 validate-input <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-        <input class="input100" type="password" name="password" placeholder="Password" required>
-        <span class="focus-input100"></span>
-        <span class="symbol-input100">
-            <i class="fa fa-lock" aria-hidden="true"></i>
-        </span>
-        <span class="help-block"><?php echo $password_err; ?></span>
-    </div>
+                    <div class="wrap-input100 validate-input <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                        <input class="input100" type="password" name="password" placeholder="Password" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <span class="help-block"><?php echo $password_err; ?></span>
+                    </div>
 
-    <div class="container-login100-form-btn">
-        <button class="login100-form-btn">
-            Login
-        </button>
-    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">Login</button>
+                    </div>
 
-    <div class="text-center p-t-12">
-        <span class="txt1">
-            Forgot
-        </span>
-        <a class="txt2" href="#">
-            Username / Password?
-        </a>
-    </div>
-    <div class="mb-5 pb-5"></div>
-    <div class="text-center p-t-12">
-        <a class="txt2" href="../../index.php">
-            Retour vers le site
-        </a>
-    </div>
-</form>
-
+                    <div class="text-center p-t-12">
+                        <span class="txt1">Forgot</span>
+                        <a class="txt2" href="#">Username / Password?</a>
+                    </div>
+                    <div class="mb-5 pb-5"></div>
+                    <div class="text-center p-t-12">
+                        <a class="txt2" href="../../index.php">Retour vers le site</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -160,9 +143,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="vendor/select2/select2.min.js"></script>
     <script src="vendor/tilt/tilt.jquery.min.js"></script>
     <script>
-        $('.js-tilt').tilt({
-            scale: 1.1
-        })
+        $('.js-tilt').tilt({ scale: 1.1 })
     </script>
     <script src="js/main.js"></script>
 </body>

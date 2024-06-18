@@ -256,7 +256,7 @@ body {
 	color: var(--green);
 }
 #content nav form {
-	max-width: 400px;
+	max-width: 600px;
 	width: 100%;
 	margin-right: auto;
 }
@@ -680,7 +680,9 @@ input, select {
     padding: 20px 20px;
     text-align: center;
 }
-
+.btn-success{
+	background: var(--green);
+}
 
 
 
@@ -778,3 +780,12 @@ tr:hover {
 }
 
 
+
+.pagination .page-item a {
+	color: #2EB872;
+}
+
+.pagination .page-item.active a {
+	background-color: #2EB872;
+	border-color: #2EB872;
+}

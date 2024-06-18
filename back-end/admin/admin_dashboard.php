@@ -55,7 +55,7 @@ try {
             <li>
                 <a href="manage_services.php">
                     <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Service</span>
+                    <span class="text">Services</span>
                 </a>
             </li>
             <li>
@@ -65,17 +65,17 @@ try {
                 </a>
             </li>
             <li>
-                <a href="manage_horaires.php">
-                <i class='bx bxs-hourglass' ></i>
-                    <span class="text">Horaires</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="#">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
+                    <a href="manage_habitats.php">
+                        <i class='bx bxs-home-smile'></i>
+                        <span class="text">Habitats</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage_animals.php">
+                        <i class='bx bxl-baidu'></i>
+                        <span class="text">Animaux</span>
+                    </a>
+                </li>
             <li class="active">
                 <a href="#">
                     <i class='bx bxs-dashboard'></i>
@@ -97,9 +97,9 @@ try {
                 </a>
             </li>
             <li>
-                <a href="#" class="logout">
+                <a href="../login/logout.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                    <span class="text">Déconnexion</span>
                 </a>
             </li>
         </ul>

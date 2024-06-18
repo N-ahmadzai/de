@@ -1,14 +1,5 @@
 <?php
 
-//  Récupérer la liste 
-// try {
-//     $pdo = getPDO();
-//     $stmt = $pdo->query("SELECT * FROM users");
-//     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// } catch (PDOException $e) {
-//     $error_message = "Erreur : " . $e->getMessage();
-// }
-
 require_once('../config/db_connect.php');
 
 // Récupérer la liste des utilisateurs avec rôle "employe" ou "veterinaire"
@@ -19,7 +10,6 @@ try {
 } catch (PDOException $e) {
     $error_message = "Erreur : " . $e->getMessage();
 }
-
 
 // Recherche
 $search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
@@ -59,87 +49,92 @@ $start_index = ($current_page - 1) * $users_per_page;
 $current_page_users = array_slice($filtered_users, $start_index, $users_per_page);
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <title>Tableau des membres avec pagination et recherche</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/users.css">
 </head>
 
 <body>
     <!-- Formulaire de recherche -->
     <form class="search-form" method="GET" action="">
-        <input type="text" name="search" placeholder="Rechercher par nom ou email" value="<?php echo htmlspecialchars($search_query); ?>">
-        <button type="submit"><i class='bx bx-search'></i></button>
+        <input type="text" name="search" placeholder="Rechercher par nom ou email" value="<?php echo htmlspecialchars($search_query); ?>" class="form-control">
+        <button type="submit" class="btn btn-primary"><i class='bx bx-search'></i> Rechercher</button>
     </form>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Email</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Rôle</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Rôle</th>
+        <th scope="col">Spécialité vétérinaire</th>
+        <th scope="col">Département de l'employé</th>
+        <th scope="col">Actions</th>
+    </tr>
+</thead>
+
         <tbody>
-            <?php if (count($current_page_users) > 0) : ?>
-                <?php foreach ($current_page_users as $user) : ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($user['id']); ?></td>
-                        <td><?php echo htmlspecialchars($user['email']); ?></td>
-                        <td><?php echo htmlspecialchars($user['name']); ?></td>
-                        <td><?php echo htmlspecialchars($user['role']); ?></td>
-                        <td class="actions">
-                            <a href="update_user.php?id=<?php echo $user['id']; ?>"><i class='bx bx-edit'></i></a>
-                            <a href="delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');"><i class='bx bxs-trash'></i></a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else : ?>
-                <tr>
-                    <td colspan="5">Aucun utilisateur trouvé</td>
-                </tr>
-            <?php endif; ?>
+        <?php if (count($current_page_users) > 0) : ?>
+    <?php foreach ($current_page_users as $user) : ?>
+        <tr>
+            <td><?php echo htmlspecialchars($user['id']); ?></td>
+            <td><?php echo htmlspecialchars($user['email']); ?></td>
+            <td><?php echo htmlspecialchars($user['name']); ?></td>
+            <td><?php echo htmlspecialchars($user['role']); ?></td>
+            <td><?php echo isset($user['vet_specialty']) ? htmlspecialchars($user['vet_specialty']) : ''; ?></td>
+            <td><?php echo isset($user['employee_department']) ? htmlspecialchars($user['employee_department']) : ''; ?></td>
+            <td class="actions">
+                <a href="update_user.php?id=<?php echo $user['id']; ?>" ><i class='bx bx-edit'></i></a>
+                <a href="delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');"><i class='bx bxs-trash'></i></a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php else : ?>
+    <tr>
+        <td colspan="7">Aucun utilisateur trouvé</td>
+    </tr>
+<?php endif; ?>
 
-
-
-            <!-- Affichage des messages -->
-            <?php if (isset($_GET['status']) && $_GET['status'] === 'success') : ?>
-                <div class="success_message alert alert-success">
-                    <?php echo htmlspecialchars($_GET['message']); ?>
-                </div>
-            <?php endif; ?>
-
-            <?php if (isset($_GET['status']) && $_GET['status'] === 'error') : ?>
-                <div class="error_message alert alert-danger">
-                    <?php echo htmlspecialchars($_GET['message']); ?>
-                </div>
-            <?php endif; ?>
         </tbody>
     </table>
 
     <!-- Liens de pagination -->
     <div class="pagination">
         <?php if ($current_page > 1) : ?>
-            <a href="?page=<?php echo $current_page - 1; ?>&search=<?php echo urlencode($search_query); ?>">&laquo; Précédent</a>
+            <a href="?page=<?php echo $current_page - 1; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary">&laquo; Précédent</a>
         <?php endif; ?>
 
         <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
-            <a href="?page=<?php echo $page; ?>&search=<?php echo urlencode($search_query); ?>" <?php if ($page == $current_page) echo 'class="active"'; ?>>
+            <a href="?page=<?php echo $page; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary <?php if ($page == $current_page) echo 'active'; ?>">
                 <?php echo $page; ?>
             </a>
         <?php endfor; ?>
 
         <?php if ($current_page < $total_pages) : ?>
-            <a href="?page=<?php echo $current_page + 1; ?>&search=<?php echo urlencode($search_query); ?>">Suivant &raquo;</a>
+            <a href="?page=<?php echo $current_page + 1; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary">Suivant &raquo;</a>
         <?php endif; ?>
     </div>
+
+    <!-- Affichage des messages -->
+    <?php if (isset($_GET['status']) && $_GET['status'] === 'success') : ?>
+        <div class="alert alert-success mt-3">
+            <?php echo htmlspecialchars($_GET['message']); ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['status']) && $_GET['status'] === 'error') : ?>
+        <div class="alert alert-danger mt-3">
+            <?php echo htmlspecialchars($_GET['message']); ?>
+        </div>
+    <?php endif; ?>
 </body>
 
 </html>

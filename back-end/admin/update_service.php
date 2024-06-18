@@ -5,7 +5,7 @@ session_start();
 
 function uploadPhoto($file)
 {
-    $target_dir = "uploads/";
+    $target_dir = "uploads/services/";
     $imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 
     $check = getimagesize($file["tmp_name"]);
@@ -40,7 +40,7 @@ function uploadPhoto($file)
 
 // function uploadPhoto($file)
 // {
-//     $target_dir = "uploads/";
+//     $target_dir = "uploads/services//";
 //     $imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 
 //     $check = getimagesize($file["tmp_name"]);
@@ -138,27 +138,33 @@ try {
                 <li>
                     <a href="manage_user.php">
                     <i class='bx bxs-user-account' ></i>
-                        <span class="text">Membre</span>
+                        <span class="text">Membres</span>
                     </a>
                 </li>
                 <li class="active">
                     <a href="manage_services.php">
                         <i class='bx bxs-doughnut-chart'></i>
-                        <span class="text">Service</span>
+                        <span class="text">Services</span>
                     </a>
                 </li>
                 <li>
                     <a href=""manage_horaires.php>
                     <i class='bx bxs-hourglass' ></i>
-                        <span class="text">Horaire</span>
+                        <span class="text">Horaires</span>
                     </a>
                 </li>
                 <li>
-                <a href="manage_horaires.php">
-                <i class='bx bxs-hourglass' ></i>
-                    <span class="text">Horaires</span>
-                </a>
-            </li>
+                    <a href="manage_habitats.php">
+                    <i class='bx bxs-home-smile'></i>
+                        <span class="text">Habitats</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage_animals.php">
+                        <i class='bx bxl-baidu'></i>
+                        <span class="text">Animaux</span>
+                    </a>
+                </li>
             </ul>
             <ul class="side-menu">
                 <li>
@@ -168,9 +174,9 @@ try {
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="logout">
+                    <a href="../login/logout.php" class="logout">
                         <i class='bx bxs-log-out-circle'></i>
-                        <span class="text">Logout</span>
+                        <span class="text">Déconnexion</span>
                     </a>
                 </li>
             </ul>

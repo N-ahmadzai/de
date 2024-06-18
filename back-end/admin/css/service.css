@@ -679,6 +679,12 @@ input, select {
     text-align: center;
 }
 
+.btn-success{
+	background: var(--green);
+}
+
+
+
 
 /* pagination */
 
@@ -771,4 +777,14 @@ tr:hover {
 
 .actions i {
     font-size: 16px;
+}
+
+
+.pagination .page-item a {
+	color: #2EB872;
+}
+
+.pagination .page-item.active a {
+	background-color: #2EB872;
+	border-color: #2EB872;
 }

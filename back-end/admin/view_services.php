@@ -55,7 +55,7 @@ try {
                         <td><?php echo htmlspecialchars($service['description']); ?></td>
                         <td>
                             <?php if (!empty($service['photo'])) : ?>
-                                <img src="uploads/<?php echo htmlspecialchars($service['photo']); ?>" alt="Photo du service" width="50">
+                                <img src="uploads/services/<?php echo htmlspecialchars($service['photo']); ?>" alt="Photo du service" width="50">
                             <?php else : ?>
                                 Pas de photo
                             <?php endif; ?>
