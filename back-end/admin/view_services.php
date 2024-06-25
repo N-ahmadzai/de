@@ -37,7 +37,7 @@ try {
         <?php if (isset($_GET['error'])) : ?>
             <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
         <?php endif; ?>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -70,7 +70,6 @@ try {
         </table>
     </div>
 
-    <script src="js/script.js"></script>
 </body>
 
 </html>

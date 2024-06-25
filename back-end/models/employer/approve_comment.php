@@ -96,12 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <span class="text">Ajout de nourriture</span>
                 </a>
             </li>
-            <li class="active">
-                <a href="habitat_comments.php">
-                <i class='bx bxs-comment-detail' ></i>
-                    <span class="text">Commentaires</span>
-                </a>
-            </li>
             <li>
                 <a href="list_animal_food.php   ">
                     <i class='bx bx-food-menu'></i>

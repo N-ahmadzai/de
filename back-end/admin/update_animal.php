@@ -239,6 +239,5 @@ if (isset($_GET['id'])) {
             </main>
         </section>
     </div>
-    <script src="js/script.js"></script>
 </body>
 </html>

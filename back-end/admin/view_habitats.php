@@ -20,7 +20,7 @@ $habitats = $pdo->query("SELECT * FROM habitats")->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 <div class="container">
-        <table class="table">
+        <table  class="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th>Nom</th>

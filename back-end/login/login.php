@@ -107,14 +107,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <span class="help-block"><?php echo $role_err; ?></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                    <div class="wrap-input100 mt-3  validate-input <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                         <input class="input100" type="text" name="email" placeholder="Email" value="<?php echo $email; ?>" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                         <span class="help-block"><?php echo $email_err; ?></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <div class="wrap-input100 mt-3 validate-input <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                         <input class="input100" type="password" name="password" placeholder="Password" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100"><i class="fa fa-lock" aria-hidden="true"></i></span>

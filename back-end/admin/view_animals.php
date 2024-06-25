@@ -7,7 +7,17 @@ $animals_per_page = 8;
 // Récupérer le nombre total d'animaux
 try {
     $pdo = getPDO();
-    $total_animals = $pdo->query("SELECT COUNT(*) FROM animals")->fetchColumn();
+
+    // Si une recherche est effectuée
+    if (isset($_GET['q'])) {
+        $searchQuery = $_GET['q'];
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM animals WHERE name LIKE :search OR race LIKE :search");
+        $stmt->bindValue(':search', '%' . $searchQuery . '%', PDO::PARAM_STR);
+    } else {
+        $stmt = $pdo->query("SELECT COUNT(*) FROM animals");
+    }
+
+    $total_animals = $stmt->fetchColumn();
 } catch (PDOException $e) {
     $error_message = "Erreur : " . $e->getMessage();
 }
@@ -23,7 +33,22 @@ $start_index = ($current_page - 1) * $animals_per_page;
 
 try {
     $pdo = getPDO();
-    $stmt = $pdo->prepare("SELECT a.id, a.name, a.race, a.image_url, h.name as habitat_name FROM animals a JOIN habitats h ON a.habitat_id = h.id LIMIT :start_index, :animals_per_page");
+
+    // Requête SQL pour récupérer les animaux avec pagination et recherche si applicable
+    if (isset($_GET['q'])) {
+        $searchQuery = $_GET['q'];
+        $stmt = $pdo->prepare("SELECT a.id, a.name, a.race, a.image_url, h.name as habitat_name 
+                               FROM animals a 
+                               JOIN habitats h ON a.habitat_id = h.id 
+                               WHERE a.name LIKE :search OR a.race LIKE :search 
+                               LIMIT :start_index, :animals_per_page");
+        $stmt->bindValue(':search', '%' . $searchQuery . '%', PDO::PARAM_STR);
+    } else {
+        $stmt = $pdo->prepare("SELECT a.id, a.name, a.race, a.image_url, h.name as habitat_name 
+                               FROM animals a 
+                               JOIN habitats h ON a.habitat_id = h.id 
+                               LIMIT :start_index, :animals_per_page");
+    }
     $stmt->bindValue(':start_index', $start_index, PDO::PARAM_INT);
     $stmt->bindValue(':animals_per_page', $animals_per_page, PDO::PARAM_INT);
     $stmt->execute();
@@ -66,7 +91,13 @@ try {
             <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
         <?php endif; ?>
 
-        <table class="table table-bordered">
+        <!-- Formulaire de recherche -->
+        <form class="d-flex mb-3" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
+            <input class="form-control me-2" type="search" placeholder="Rechercher par nom ou race..." aria-label="Rechercher" name="q" value="<?php echo isset($_GET['q']) ? htmlspecialchars($_GET['q']) : ''; ?>">
+            <button class="btn btn-outline-success submit" type="submit" style="color:white;">Rechercher</button>
+        </form>
+
+        <table class="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -100,25 +131,24 @@ try {
             </tbody>
         </table>
 
-       <!-- Liens de pagination -->
-       <nav aria-label="Pagination">
+        <!-- Liens de pagination -->
+        <nav aria-label="Pagination">
             <ul class="pagination justify-content-center">
                 <?php if ($current_page > 1) : ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo $current_page - 1; ?>">Précédent</a></li>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo $current_page - 1; ?><?php echo isset($_GET['q']) ? '&q=' . htmlspecialchars($_GET['q']) : ''; ?>">Précédent</a></li>
                 <?php endif; ?>
 
                 <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-                    <li class="page-item <?php echo ($i === $current_page) ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    <li class="page-item <?php echo ($i === $current_page) ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?><?php echo isset($_GET['q']) ? '&q=' . htmlspecialchars($_GET['q']) : ''; ?>"><?php echo $i; ?></a></li>
                 <?php endfor; ?>
 
                 <?php if ($current_page < $total_pages) : ?>
-                    <li class="page-item"><a class="page-link" href="?page=<?php echo $current_page + 1; ?>">Suivant</a></li>
+                    <li class="page-item"><a class="page-link" href="?page=<?php echo $current_page + 1; ?><?php echo isset($_GET['q']) ? '&q=' . htmlspecialchars($_GET['q']) : ''; ?>">Suivant</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
     </div>
 
-    <script src="js/script.js"></script>
 </body>
 
 </html>

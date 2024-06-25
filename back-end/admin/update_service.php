@@ -2,72 +2,45 @@
 require_once('../config/db_connect.php');
 session_start();
 
-
 function uploadPhoto($file)
 {
     $target_dir = "uploads/services/";
     $imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 
-    $check = getimagesize($file["tmp_name"]);
-    if ($check === false) {
-        return "Le fichier n'est pas une image.";
+    // Vérifier si un fichier a été téléchargé
+    if (!empty($file["tmp_name"])) {
+        $check = getimagesize($file["tmp_name"]);
+        if ($check === false) {
+            return "Le fichier n'est pas une image valide.";
+        }
+
+        // Générer un nom de fichier unique
+        $random_name = uniqid('', true) . '.' . $imageFileType;
+        $target_file = $target_dir . $random_name;
+
+        // Vérifier la taille du fichier
+        if ($file["size"] > 500000) { // 500 KB
+            return "Le fichier est trop volumineux.";
+        }
+
+        // Autoriser seulement certains types de fichiers
+        $allowed_types = ["jpg", "jpeg", "png", "gif"];
+        if (!in_array($imageFileType, $allowed_types)) {
+            return "Seuls les formats JPG, JPEG, PNG et GIF sont autorisés.";
+        }
+
+        // Déplacer le fichier téléchargé vers le répertoire cible
+        if (!move_uploaded_file($file["tmp_name"], $target_file)) {
+            return "Erreur lors du téléchargement du fichier.";
+        }
+
+        // Retourner le nom du fichier téléchargé
+        return basename($target_file);
     }
 
-    // Renommer le fichier si un fichier avec le même nom existe déjà
-    $i = 1;
-    $target_file = $target_dir . basename($file["name"]);
-    while (file_exists($target_file)) {
-        $target_file = $target_dir . pathinfo($file["name"], PATHINFO_FILENAME) . "_$i." . $imageFileType;
-        $i++;
-    }
-
-    if ($file["size"] > 500000) {
-        return "Le fichier est trop volumineux.";
-    }
-
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        return "Seuls les formats JPG, JPEG, PNG et GIF sont autorisés.";
-    }
-
-    if (!move_uploaded_file($file["tmp_name"], $target_file)) {
-        return "Erreur lors du téléchargement du fichier.";
-    }
-
-    return basename($target_file);
+    // Si aucun fichier n'a été téléchargé, retourner null
+    return null;
 }
-
-
-
-// function uploadPhoto($file)
-// {
-//     $target_dir = "uploads/services//";
-//     $imageFileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
-
-//     $check = getimagesize($file["tmp_name"]);
-//     if ($check === false) {
-//         return "Le fichier n'est pas une image.";
-//     }
-
-
-//     //Générer un nom de fichier aléatoire
-//     $random_name = uniqid('', true) . '.' . $imageFileType;
-//     $target_file = $target_dir . $random_name;
-
-//     if ($file["size"] > 500000) {
-//         return "Le fichier est trop volumineux.";
-//     }
-
-//     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-//         return "Seuls les formats JPG, JPEG, PNG et GIF sont autorisés.";
-//     }
-
-//     if (!move_uploaded_file($file["tmp_name"], $target_file)) {
-//         return "Erreur lors du téléchargement du fichier.";
-//     }
-
-//     return $random_name;
-// }
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $service_id = $_POST['service_id'];
@@ -78,10 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $pdo = getPDO();
 
-        if ($photo) {
+        // Récupérer la photo actuelle du service
+        $stmt_photo = $pdo->prepare("SELECT photo FROM services WHERE id = ?");
+        $stmt_photo->execute([$service_id]);
+        $current_photo = $stmt_photo->fetchColumn();
+
+        if ($photo !== null) {
+            // Si un nouveau fichier a été téléchargé, mettre à jour avec la nouvelle photo
+            if ($current_photo) {
+                // Supprimer l'ancienne photo si elle existe
+                unlink($target_dir . $current_photo);
+            }
+
             $stmt = $pdo->prepare("UPDATE services SET name = ?, description = ?, photo = ? WHERE id = ?");
             $stmt->execute([$service_name, $service_description, $photo, $service_id]);
         } else {
+            // Si aucun nouveau fichier n'a été téléchargé, conserver la photo existante
             $stmt = $pdo->prepare("UPDATE services SET name = ?, description = ? WHERE id = ?");
             $stmt->execute([$service_name, $service_description, $service_id]);
         }
@@ -104,7 +89,6 @@ try {
 } catch (PDOException $e) {
     $error_message = "Erreur : " . $e->getMessage();
 }
-
 ?>
 
 
@@ -195,7 +179,7 @@ try {
                             </li>
                             <li><i class='bx bx-chevron-right'></i></li>
                             <li>
-                                <a class="active" href="update_service.php">Mettre à jour le service</a>
+                                <a class="active" href="manage_services.php">Services</a>
                             </li>
                         </ul>
                     </div>
@@ -223,7 +207,7 @@ try {
             </div>
             <div class="mb-3">
                 <label for="photo" class="form-label">Choisir un fichier:</label>
-                <input class="form-control" type="file" id="photo" name="photo">
+                <input class="form-control" type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png, .gif" required>
             </div>
             <button class="btn btn-success submit" type="submit">Mettre à jour</button>
         </form>
@@ -233,7 +217,6 @@ try {
         </section>
         <!-- CONTENU -->
     </div>
-    <script src="js/script.js"></script>
 </body>
 
 </html>

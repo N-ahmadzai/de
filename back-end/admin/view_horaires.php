@@ -29,7 +29,7 @@ $horaires = $pdo->query("SELECT * FROM horaires")->fetchAll(PDO::FETCH_ASSOC);
             <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
         <?php endif; ?>
 
-        <table class="table table-bordered">
+        <table  class="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -56,7 +56,6 @@ $horaires = $pdo->query("SELECT * FROM horaires")->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </div>
 
-    <script src="js/script.js"></script>
 </body>
 
 </html>

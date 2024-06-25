@@ -204,6 +204,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </section>
         <!-- CONTENU -->
     </div>
-    <script src="js/script.js"></script>
 </body>
 </html>

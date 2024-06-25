@@ -65,10 +65,10 @@ $current_page_users = array_slice($filtered_users, $start_index, $users_per_page
     <!-- Formulaire de recherche -->
     <form class="search-form" method="GET" action="">
         <input type="text" name="search" placeholder="Rechercher par nom ou email" value="<?php echo htmlspecialchars($search_query); ?>" class="form-control">
-        <button type="submit" class="btn btn-primary"><i class='bx bx-search'></i> Rechercher</button>
+        <button type="submit" class="btn btn-outline-success submit"> Rechercher</button>
     </form>
 
-    <table class="table table-striped">
+    <table class="table table-hover table-bordered">
     <thead>
     <tr>
         <th scope="col">ID</th>

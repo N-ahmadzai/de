@@ -734,7 +734,7 @@ tr:hover {
 }
 
 .search-form button:hover {
-    background-color: var(--light-green);
+    background-color: var(--green);
 }
 
 .pagination {

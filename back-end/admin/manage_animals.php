@@ -2,6 +2,19 @@
 session_start();
 require_once('../config/db_connect.php');
 
+// Fonction pour vérifier le type MIME
+function checkMimeType($file) {
+    $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
+    $file_mime_type = mime_content_type($file['tmp_name']);
+    return in_array($file_mime_type, $allowed_types);
+}
+
+// Fonction pour nettoyer le nom du fichier
+function sanitizeFileName($filename) {
+    $filename = preg_replace('/[^a-zA-Z0-9._-]/', '_', $filename);
+    return $filename;
+}
+
 // Vérifie si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérifie si les données nécessaires sont fournies
@@ -11,11 +24,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $habitat = $_POST['habitat'];
         $image = $_FILES['image'];
 
+        // Vérifiez la taille de l'image (par exemple, 2MB maximum)
+        if ($image['size'] > 2 * 1024 * 1024) {
+            $_SESSION['error_message'] = "Le fichier est trop volumineux. La taille maximale autorisée est de 2MB.";
+            header("Location: manage_animals.php");
+            exit();
+        }
+
+        // Vérifiez le type MIME de l'image
+        if (!checkMimeType($image)) {
+            $_SESSION['error_message'] = "Type de fichier non valide. Seuls les fichiers JPEG, PNG et GIF sont autorisés.";
+            header("Location: manage_animals.php");
+            exit();
+        }
+
+        // Nettoyez le nom du fichier
+        $image_name = sanitizeFileName(basename($image['name']));
+
         try {
             $pdo = getPDO();
             $stmt = $pdo->prepare("INSERT INTO animals (name, race, habitat_id, image_url) VALUES (?, ?, ?, ?)");
-            // Move uploaded image to a directory and save its path in the database
-            $image_path = 'uploads/animals/' . basename($image['name']);
+
+            // Déplacer l'image téléchargée vers un répertoire et enregistrer son chemin dans la base de données
+            $image_path = 'uploads/animals/' . $image_name;
             move_uploaded_file($image['tmp_name'], $image_path);
             $stmt->execute([$name, $race, $habitat, $image_path]);
 
@@ -43,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -206,7 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-                        <!-- inclure la page afficher les habitats -->
+                        <!-- inclure la page afficher les animaux -->
                         <?php include_once('view_animals.php') ?>
 
                     </div>
@@ -215,7 +247,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </section>
         <!-- CONTENU -->
     </div>
-    <script src="js/script.js"></script>
 </body>
 
 </html>

@@ -422,7 +422,7 @@ body {
 	align-items: center;
 }
 
-.bxs-calendar-check,.bxs-group, .bxs-dollar-circle{
+.bxl-baidu,.bxs-group, .bxs-home-circle{
 	color: var(--light) !important;
 	background-color: var(--green) !important;
 }
@@ -446,10 +446,6 @@ body {
 #content main .box-info li .text p {
 	color: var(--dark);	
 }
-
-
-
-
 
 #content main .table-data {
 	display: flex;
@@ -563,14 +559,6 @@ body {
 /* MAIN */
 /* CONTENT */
 
-
-
-
-
-
-
-
-
 @media screen and (max-width: 768px) {
 	#sidebar {
 		width: 200px;
@@ -585,10 +573,6 @@ body {
 		display: none;
 	}
 }
-
-
-
-
 
 
 @media screen and (max-width: 576px) {
@@ -635,10 +619,6 @@ body {
 		min-width: 420px;
 	}
 }
-
-
-
-
 
 
 
