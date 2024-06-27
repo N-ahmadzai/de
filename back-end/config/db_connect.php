@@ -1,10 +1,11 @@
 <?php
 // Inclure le fichier de configuration externe
 require_once('config.php');
-function getPDO() {
+function getPDO()
+{
     try {
         // Connexion à la base de données avec PDO
-        $pdo = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASS);
+        $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
 
         // Définir le mode d'erreur PDO sur Exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,4 +16,3 @@ function getPDO() {
         die("Erreur de connexion à la base de données : " . $e->getMessage());
     }
 }
-

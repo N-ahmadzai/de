@@ -90,65 +90,59 @@ if (isset($_GET['id'])) {
 
 <body>
     <div class="container-fluid">
-       <!-- SIDEBAR -->
-    <section id="sidebar">
-        <a href="employe_dashboard.php" class="brand">
-            <i class='bx bxs-smile'></i>
-            <span class="text">Arcadia</span>
-        </a>
-        <ul class="side-menu top">
-            <li>
-                <a href="employe_dashboard.php">
-                <i class='bx bxs-comment-check' ></i>
-                    <span class="text">Valider un avis</span>
-                </a>
-            </li>
-            <li>
-                <a href="view_service.php">
-                <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Voir service</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="update_service.php">
-                <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Modifier un service</span>
-                </a>
-            </li>
-            <li>
-                <a href="add_animal_food.php">
-                <i class='bx bxs-add-to-queue' ></i>
-                    <span class="text">Ajout de nourriture</span>
-                </a>
-            </li>
-            <li>
-                <a href="list_animal_food.php">
-                <i class='bx bx-food-tag' ></i>
-                    <span class="text">Liste des Nourritures</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="#">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
-                <a href="../../login/logout.php" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
-                </a>
-            </li>
-        </ul>
-    </section>
-    <!-- SIDEBAR -->
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="employe_dashboard.php" class="brand">
+                <i class='bx bxs-smile'></i>
+                <span class="text">Arcadia</span>
+            </a>
+            <ul class="side-menu top">
+                <li>
+                    <a href="employe_dashboard.php">
+                        <i class='bx bxs-comment-check'></i>
+                        <span class="text">Valider un avis</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="view_service.php">
+                        <i class='bx bxs-doughnut-chart'></i>
+                        <span class="text">Voir service</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="update_service.php">
+                        <i class='bx bxs-doughnut-chart'></i>
+                        <span class="text">Modifier un service</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="add_animal_food.php">
+                        <i class='bx bxs-add-to-queue'></i>
+                        <span class="text">Ajout de nourriture</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="list_animal_food.php">
+                        <i class='bx bx-food-tag'></i>
+                        <span class="text">Liste des Nourritures</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="../../login/logout.php" class="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Déconnexion</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
 
         <!-- CONTENU -->
         <section id="content">
             <main>
-            <div class="head-title">
+                <div class="head-title">
                     <div class="left">
                         <h1>Gérer les services</h1>
                         <ul class="breadcrumb">
@@ -171,36 +165,38 @@ if (isset($_GET['id'])) {
                             </a>
                         </div>
 
-    <!-- Afficher les messages d'erreur ou de succès -->
-    <?php if (isset($_SESSION['success_message'])) : ?>
-        <div class="alert alert-success"><?php echo htmlspecialchars($_SESSION['success_message']); unset($_SESSION['success_message']); ?></div>
-    <?php endif; ?>
+                        <!-- Afficher les messages d'erreur ou de succès -->
+                        <?php if (isset($_SESSION['success_message'])) : ?>
+                            <div class="alert alert-success"><?php echo htmlspecialchars($_SESSION['success_message']);
+                                                                unset($_SESSION['success_message']); ?></div>
+                        <?php endif; ?>
 
-    <?php if (isset($_SESSION['error_message'])) : ?>
-        <div class="alert alert-danger"><?php echo htmlspecialchars($_SESSION['error_message']); unset($_SESSION['error_message']); ?></div>
-    <?php endif; ?>
+                        <?php if (isset($_SESSION['error_message'])) : ?>
+                            <div class="alert alert-danger"><?php echo htmlspecialchars($_SESSION['error_message']);
+                                                            unset($_SESSION['error_message']); ?></div>
+                        <?php endif; ?>
 
-    <?php if (isset($error_message)) : ?>
-        <div class="alert alert-danger"><?php echo htmlspecialchars($error_message); ?></div>
-    <?php endif; ?>
-       
-    <form method="POST" action="update_service.php" enctype="multipart/form-data">
-        <input type="hidden" name="service_id" value="<?php echo isset($service['id']) ? htmlspecialchars($service['id']) : ''; ?>">
-        <div class="mb-3">
-            <label for="name" class="form-label">Nom du service:</label>
-            <input class="form-control" type="text" id="name" name="name" value="<?php echo isset($service['name']) ? htmlspecialchars($service['name']) : ''; ?>">
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description:</label>
-            <textarea class="form-control" id="description" name="description" rows="3"><?php echo isset($service['description']) ? htmlspecialchars($service['description']) : ''; ?></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="photo" class="form-label">Choisir un fichier:</label>
-            <input class="form-control" type="file" id="photo" name="photo">
-        </div>
-        <button class="btn btn-success submit" type="submit">Mettre à jour</button>
-    </form>
-        
+                        <?php if (isset($error_message)) : ?>
+                            <div class="alert alert-danger"><?php echo htmlspecialchars($error_message); ?></div>
+                        <?php endif; ?>
+
+                        <form method="POST" action="update_service.php" enctype="multipart/form-data">
+                            <input type="hidden" name="service_id" value="<?php echo isset($service['id']) ? htmlspecialchars($service['id']) : ''; ?>">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom du service:</label>
+                                <input class="form-control" type="text" id="name" name="name" value="<?php echo isset($service['name']) ? htmlspecialchars($service['name']) : ''; ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"><?php echo isset($service['description']) ? htmlspecialchars($service['description']) : ''; ?></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="photo" class="form-label">Choisir un fichier:</label>
+                                <input class="form-control" type="file" id="photo" name="photo">
+                            </div>
+                            <button class="btn btn-success submit" type="submit">Mettre à jour</button>
+                        </form>
+
                     </div>
             </main>
         </section>

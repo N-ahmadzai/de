@@ -87,7 +87,7 @@ $current_page_animals = array_slice($filtered_animals, $start_index, $animals_pe
             </li>
             <li>
                 <a href="habitat_comments.php">
-                <i class='bx bxs-comment-detail' ></i>
+                    <i class='bx bxs-comment-detail'></i>
                     <span class="text">Commentaires</span>
                 </a>
             </li>
@@ -100,15 +100,9 @@ $current_page_animals = array_slice($filtered_animals, $start_index, $animals_pe
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
                 <a href="../../login//logout.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                    <span class="text">Déconnexion</span>
                 </a>
             </li>
         </ul>
@@ -140,7 +134,7 @@ $current_page_animals = array_slice($filtered_animals, $start_index, $animals_pe
                     </ul>
                 </div>
             </div>
-          
+
 
             <!-- Messages d'erreur et de succès -->
             <?php if (!empty($error_message)) : ?>

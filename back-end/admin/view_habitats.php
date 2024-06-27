@@ -4,8 +4,8 @@ $pdo = getPDO();
 
 $habitats = $pdo->query("SELECT * FROM habitats")->fetchAll(PDO::FETCH_ASSOC);
 ?>
- 
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -19,8 +19,8 @@ $habitats = $pdo->query("SELECT * FROM habitats")->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-<div class="container">
-        <table  class="table table-hover table-bordered">
+    <div class="container">
+        <table class="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -30,18 +30,18 @@ $habitats = $pdo->query("SELECT * FROM habitats")->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($habitats as $habitat): ?>
+                <?php foreach ($habitats as $habitat) : ?>
                     <tr>
                         <td><?php echo htmlspecialchars($habitat['name']); ?></td>
                         <td><?php echo htmlspecialchars($habitat['description']); ?></td>
                         <td>
-                            <?php if ($habitat['image_url']): ?>
+                            <?php if ($habitat['image_url']) : ?>
                                 <img src="<?php echo htmlspecialchars($habitat['image_url']); ?>" alt="Image" style="width: 100px;">
                             <?php endif; ?>
                         </td>
                         <td>
-                            <a href="update_habitat.php?id=<?php echo $habitat['id']; ?>" ><i class='bx bx-edit' style='color: #2EB872;'></i></a>
-                            <a href="delete_habitat.php?id=<?php echo $habitat['id']; ?>"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat?')"><i class='bx bxs-trash' style='color: #2EB872;'></i></a>
+                            <a href="update_habitat.php?id=<?php echo $habitat['id']; ?>"><i class='bx bx-edit' style='color: #2EB872;'></i></a>
+                            <a href="delete_habitat.php?id=<?php echo $habitat['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat?')"><i class='bx bxs-trash' style='color: #2EB872;'></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

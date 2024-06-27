@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start(); // Démarrage de la session
 
 require_once('../config/db_connect.php');
@@ -101,38 +101,38 @@ try {
     <div class="container-fluid">
         <!-- SIDEBAR -->
         <section id="sidebar">
-        <a href="admin_dashboard.php" class="brand">
-        <i class='bx bxs-smile'></i>
-            <span class="text">Arcadia</span>
-        </a>
-        <ul class="side-menu top">
-            <li>
-                <a href="admin_dashboard.php">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="manage_user.php">
-                <i class='bx bxs-user-account' ></i>
-                    <span class="text">Membres</span>
-                </a>
-            </li>
-            <li class="active">
-                <a href="manage_services.php">
-                    <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Services</span>
-                </a>
-            </li>
-            <li>
-                <a href="manage_horaires.php">
-                <i class='bx bxs-hourglass' ></i>
-                    <span class="text">Horaires</span>
-                </a>
-            </li>
-            <li>
+            <a href="admin_dashboard.php" class="brand">
+                <i class='bx bxs-smile'></i>
+                <span class="text">Arcadia</span>
+            </a>
+            <ul class="side-menu top">
+                <li>
+                    <a href="admin_dashboard.php">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage_user.php">
+                        <i class='bx bxs-user-account'></i>
+                        <span class="text">Membres</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="manage_services.php">
+                        <i class='bx bxs-doughnut-chart'></i>
+                        <span class="text">Services</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage_horaires.php">
+                        <i class='bx bxs-hourglass'></i>
+                        <span class="text">Horaires</span>
+                    </a>
+                </li>
+                <li>
                     <a href="manage_habitats.php">
-                    <i class='bx bxs-home-smile'></i>
+                        <i class='bx bxs-home-smile'></i>
                         <span class="text">Habitats</span>
                     </a>
                 </li>
@@ -142,7 +142,7 @@ try {
                         <span class="text">Animaux</span>
                     </a>
                 </li>
-        </ul>
+            </ul>
             <ul class="side-menu">
                 <li>
                     <a href="#">
@@ -224,7 +224,7 @@ try {
                                 <i class='bx bx-list-ul'></i>
                             </li>
                         </ul>
-                        
+
 
                         <!-- inclure la page afficher les services -->
                         <?php include_once('view_services.php') ?>

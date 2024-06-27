@@ -24,4 +24,3 @@ try {
     header("Location: list_animal_food.php");
     exit();
 }
-

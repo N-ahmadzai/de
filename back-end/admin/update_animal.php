@@ -95,7 +95,6 @@ if (isset($_GET['id'])) {
         $stmt = $pdo->prepare("SELECT id, name FROM habitats");
         $stmt->execute();
         $habitats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     } catch (PDOException $e) {
         $_SESSION['error_message'] = "Erreur lors de la récupération des données : " . $e->getMessage();
         header("Location: manage_animals.php");
@@ -218,7 +217,7 @@ if (isset($_GET['id'])) {
                             <div class="form-group">
                                 <label for="habitat_id">Habitat :</label>
                                 <select name="habitat_id" class="form-control" id="habitat_id" required>
-                                    <?php foreach ($habitats as $habitat): ?>
+                                    <?php foreach ($habitats as $habitat) : ?>
                                         <option value="<?php echo $habitat['id']; ?>" <?php echo $habitat['id'] == $animal['habitat_id'] ? 'selected' : ''; ?>>
                                             <?php echo htmlspecialchars($habitat['name']); ?>
                                         </option>
@@ -240,4 +239,5 @@ if (isset($_GET['id'])) {
         </section>
     </div>
 </body>
+
 </html>

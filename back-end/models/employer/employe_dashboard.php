@@ -55,40 +55,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <ul class="side-menu top">
             <li class="active">
                 <a href="employe_dashboard.php">
-                <i class='bx bxs-comment-check' ></i>
+                    <i class='bx bxs-comment-check'></i>
                     <span class="text">Valider un avis</span>
                 </a>
             </li>
             <li>
                 <a href="view_service.php">
-                <i class='bx bxs-doughnut-chart'></i>
+                    <i class='bx bxs-doughnut-chart'></i>
                     <span class="text">Service</span>
                 </a>
             </li>
             <li>
                 <a href="add_animal_food.php">
-                <i class='bx bxs-add-to-queue' ></i>
+                    <i class='bx bxs-add-to-queue'></i>
                     <span class="text">Ajout de nourriture</span>
                 </a>
             </li>
             <li>
                 <a href="list_animal_food.php">
-                <i class='bx bx-food-tag' ></i>
+                    <i class='bx bx-food-tag'></i>
                     <span class="text">Liste des Nourritures</span>
                 </a>
             </li>
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
                 <a href="../../login/logout.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                    <span class="text">Déconnexion</span>
                 </a>
             </li>
         </ul>
@@ -100,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="head-title">
                 <div class="left">
                     <h2>Tableau de bord employé</h2>
-                    
+
                     <ul class="breadcrumb">
                         <li>
                             <a class="active" href="employe_dashboard.php">Tableau de bord</a>
@@ -146,8 +140,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class='bx bx-list-ul'></i>
                         </li>
                     </ul>
-                     <!-- Affichage des messages -->
-                     <?php if (isset($_SESSION['success_message'])) : ?>
+                    <!-- Affichage des messages -->
+                    <?php if (isset($_SESSION['success_message'])) : ?>
                         <div class="alert alert-success">
                             <?php
                             echo htmlspecialchars($_SESSION['success_message']);

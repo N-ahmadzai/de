@@ -24,4 +24,3 @@ try {
     header("Location: employe_dashboard.php");
     exit();
 }
-?>

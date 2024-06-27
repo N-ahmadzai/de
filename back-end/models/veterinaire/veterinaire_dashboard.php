@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </li>
             <li>
                 <a href="habitat_comments.php">
-                <i class='bx bxs-comment-detail' ></i>
+                    <i class='bx bxs-comment-detail'></i>
                     <span class="text">Commentaires</span>
                 </a>
             </li>
@@ -71,19 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <span class="text">Alimentation</span>
                 </a>
             </li>
-           
+
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
                 <a href="../../login/logout.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                    <span class="text">Déconnexion</span>
                 </a>
             </li>
         </ul>
@@ -91,52 +85,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- SIDEBAR -->
     <!-- CONTENU -->
     <section id="content">
-            <main>
-                <div class="head-title">
-                    <div class="left">
-                        <h2>Tableau de bord Vétérinaire</h2>
-                        <ul class="breadcrumb">
-                            <li>
-                                <a class="active" href="veterinaire_dashboard.php">Tableau de bord</a>
-                            </li>
-                            <li><i class='bx bx-chevron-right'></i></li>
-                            <li>
-                                <a class="active" href="veterinaire_dashboard.php">Rapports veterinaire</a>
-                            </li>
-                        </ul>
-                    </div>
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h2>Tableau de bord Vétérinaire</h2>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a class="active" href="veterinaire_dashboard.php">Tableau de bord</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="veterinaire_dashboard.php">Rapports veterinaire</a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
 
-                <div class="table-data">
-                    <div class="order">
-                        <div class="head">
-                            <a href="veterinaire_dashboard.php">
-                                <h3>Ajouter un rapport veterinaire</h3>
-                            </a>
-                        </div>
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <a href="veterinaire_dashboard.php">
+                            <h3>Ajouter un rapport veterinaire</h3>
+                        </a>
+                    </div>
 
-                        <!-- Formulaire pour créer un nouveau rapport -->
-                        <form action="veterinaire_dashboard.php" method="POST">
+                    <!-- Formulaire pour créer un nouveau rapport -->
+                    <form action="veterinaire_dashboard.php" method="POST">
                         <div class="mb-1">
                             <label for="animal_id" class="form-label">Animal ID:</label>
                             <input type="number" class="form-control" id="animal_id" name="animal_id" required>
                         </div>
 
                         <div class="mb-1">
-    <label for="status" class="form-label">État de l'animal :</label>
-    <input type="text" class="form-control" id="status" name="animal_status" required>
-</div>
+                            <label for="status" class="form-label">État de l'animal :</label>
+                            <input type="text" class="form-control" id="status" name="animal_status" required>
+                        </div>
 
-<div class="mb-1">
-    <label for="food" class="form-label">Nourriture proposée :</label>
-    <input type="text" class="form-control" id="food" name="animal_food" required>
-</div>
+                        <div class="mb-1">
+                            <label for="food" class="form-label">Nourriture proposée :</label>
+                            <input type="text" class="form-control" id="food" name="animal_food" required>
+                        </div>
 
-<div class="mb-1">
-    <label for="food_weight" class="form-label">Grammage de la nourriture :</label>
-    <input type="number" class="form-control" id="food_weight" name="animal_food_weight" required>
-</div>
-            
+                        <div class="mb-1">
+                            <label for="food_weight" class="form-label">Grammage de la nourriture :</label>
+                            <input type="number" class="form-control" id="food_weight" name="animal_food_weight" required>
+                        </div>
+
 
                         <div class="mb-1">
                             <label for="visit_date" class="form-label">Date de passage:</label>
@@ -150,64 +144,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <button type="submit" class="btn btn-success submit">Ajouter le rapport</button>
                     </form>
-                         <!-- Messages d'erreur et de succès -->
-     
-                    </div>
+                    <!-- Messages d'erreur et de succès -->
 
-                   
-                    <div class="todo">
-    <ul class="todo-list">
-        <li class="completed">
-        <h3>Gestion des rapports vétérinaire</h3>
-            <i class='bx bx-list-ul'></i>
-        </li>
-    </ul>
-    <?php
-    if (isset($_SESSION['success_message'])) : ?>
-        <div class="alert alert-success mt-3">
-            <?php
-            echo $_SESSION['success_message'];
-            unset($_SESSION['success_message']);
-            ?>
-        </div>
-    <?php endif; ?>
-
-    <?php
-    if (isset($_SESSION['error_message'])) : ?>
-        <div class="alert alert-danger mt-3">
-            <?php
-            echo $_SESSION['error_message'];
-            unset($_SESSION['error_message']);
-            ?>
-        </div>
-    <?php endif; ?>
+                </div>
 
 
+                <div class="todo">
+                    <ul class="todo-list">
+                        <li class="completed">
+                            <h3>Gestion des rapports vétérinaire</h3>
+                            <i class='bx bx-list-ul'></i>
+                        </li>
+                    </ul>
+                    <?php
+                    if (isset($_SESSION['success_message'])) : ?>
+                        <div class="alert alert-success mt-3">
+                            <?php
+                            echo $_SESSION['success_message'];
+                            unset($_SESSION['success_message']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
 
-    
-    <!-- Affichage des messages -->
-<?php if (isset($_SESSION['success_message'])) : ?>
-    <div class="alert alert-success mt-3">
-        <?php echo $_SESSION['success_message']; ?>
-    </div>
-    <?php unset($_SESSION['success_message']); ?>
-<?php endif; ?>
-
-<?php if (isset($_SESSION['error_message'])) : ?>
-    <div class="alert alert-danger mt-3">
-        <?php echo $_SESSION['error_message']; ?>
-    </div>
-    <?php unset($_SESSION['error_message']); ?>
-<?php endif; ?>
+                    <?php
+                    if (isset($_SESSION['error_message'])) : ?>
+                        <div class="alert alert-danger mt-3">
+                            <?php
+                            echo $_SESSION['error_message'];
+                            unset($_SESSION['error_message']);
+                            ?>
+                        </div>
+                    <?php endif; ?>
 
 
-<!--  inclure la page afficher les rapports -->
-    <?php require_once('view_reports.php'); ?>
-</div>
-</div>
-</main>
-</section>
-<!-- CONTENU -->
+
+
+                    <!-- Affichage des messages -->
+                    <?php if (isset($_SESSION['success_message'])) : ?>
+                        <div class="alert alert-success mt-3">
+                            <?php echo $_SESSION['success_message']; ?>
+                        </div>
+                        <?php unset($_SESSION['success_message']); ?>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['error_message'])) : ?>
+                        <div class="alert alert-danger mt-3">
+                            <?php echo $_SESSION['error_message']; ?>
+                        </div>
+                        <?php unset($_SESSION['error_message']); ?>
+                    <?php endif; ?>
+
+
+                    <!--  inclure la page afficher les rapports -->
+                    <?php require_once('view_reports.php'); ?>
+                </div>
+            </div>
+        </main>
+    </section>
+    <!-- CONTENU -->
 
 </body>
 

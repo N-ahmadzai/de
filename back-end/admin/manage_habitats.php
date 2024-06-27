@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
                 <li class="active">
                     <a href="manage_habitats.php">
-                    <i class='bx bxs-home-smile'></i>
+                        <i class='bx bxs-home-smile'></i>
                         <span class="text">Habitats</span>
                     </a>
                 </li>
@@ -147,23 +147,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <!-- Formulaire de création d'utilisateur -->
-              
-        <form action="manage_habitats.php" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="name" class="form-label">Nom de l'habitat</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Image de l'habitat</label>
-                <input type="file" class="form-control" id="image" name="image" required>
-            </div>
-            <button type="submit" class="btn btn-success submit">Créer Habitat</button>
-        </form>
-   
+
+                        <form action="manage_habitats.php" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom de l'habitat</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image de l'habitat</label>
+                                <input type="file" class="form-control" id="image" name="image" required>
+                            </div>
+                            <button type="submit" class="btn btn-success submit">Créer Habitat</button>
+                        </form>
+
 
                         <?php if (isset($_SESSION['success_message'])) : ?>
                             <div class="alert alert-success mt-3"><?php echo htmlspecialchars($_SESSION['success_message']); ?></div>

@@ -62,12 +62,6 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>AdminHub</title>
     <link rel="stylesheet" href="css/dashboard.css">
-    <style>
-        .bxl-baidu,.bxs-group, .bxs-home-circle{
-	color: var(--light) !important;
-	background-color: var(--green) !important;
-}
-    </style>
 </head>
 
 <body>
@@ -112,7 +106,7 @@ try {
             </li>
             <li>
                 <a href="manage_animals.php">
-                <i class='bx bxs-home'></i>
+                <i class='bx bxl-baidu' ></i>
                     <span class="text">Animaux</span>
                 </a>
             </li>

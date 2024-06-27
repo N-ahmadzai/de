@@ -29,7 +29,7 @@ $horaires = $pdo->query("SELECT * FROM horaires")->fetchAll(PDO::FETCH_ASSOC);
             <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
         <?php endif; ?>
 
-        <table  class="table table-hover table-bordered">
+        <table class="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -47,8 +47,8 @@ $horaires = $pdo->query("SELECT * FROM horaires")->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo htmlspecialchars($horaire['heure_ouverture']); ?></td>
                         <td><?php echo htmlspecialchars($horaire['heure_fermeture']); ?></td>
                         <td>
-                            <a  href="update_horaires.php?id=<?php echo $horaire['id']; ?>"><i class='bx bx-edit' style='color: #2EB872;'></i></a>
-                            <a  href="manage_horaires.php?id=<?php echo $horaire['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet horaire ?');"><i class='bx bxs-trash' style='color: #2EB872;'></i></a>
+                            <a href="update_horaires.php?id=<?php echo $horaire['id']; ?>"><i class='bx bx-edit' style='color: #2EB872;'></i></a>
+                            <a href="manage_horaires.php?id=<?php echo $horaire['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet horaire ?');"><i class='bx bxs-trash' style='color: #2EB872;'></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

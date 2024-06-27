@@ -24,4 +24,3 @@ if (isset($_GET['id'])) {
     header("Location: habitat_comments.php");
     exit();
 }
-?>

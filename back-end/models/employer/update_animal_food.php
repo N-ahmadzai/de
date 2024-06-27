@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Mettre à Jour Nourriture d'Animal</title>
     <link rel="stylesheet" href="../../admin/css/employer.css">
 </head>
+
 <body>
     <!-- SIDEBAR -->
     <section id="sidebar">
@@ -62,12 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <span class="text">Arcadia</span>
         </a>
         <ul class="side-menu top">
-        <li><a href="employe_dashboard.php"><i class='bx bxs-comment-check' ></i><span class="text">Valider un avis</span></a></li>
+            <li><a href="employe_dashboard.php"><i class='bx bxs-comment-check'></i><span class="text">Valider un avis</span></a></li>
             <li><a href="view_service.php"><i class='bx bxs-doughnut-chart'></i><span class="text">Service</span></a></li>
-            <li><a href="add_animal_food.php"><i class='bx bxs-add-to-queue' ></i><span class="text">Ajout de nourriture</span></a></li>
-            <li><a href="list_animal_food.php"><i class='bx bx-food-tag' ></i><span class="text">Liste des Nourritures</span></a></li>
+            <li><a href="add_animal_food.php"><i class='bx bxs-add-to-queue'></i><span class="text">Ajout de nourriture</span></a></li>
+            <li><a href="list_animal_food.php"><i class='bx bx-food-tag'></i><span class="text">Liste des Nourritures</span></a></li>
             <li class="active"><a href="update_animal_food.php"><i class='bx bxs-comment'></i><span class="text"> Mise à jour</span></a></li>
-      </ul>
+        </ul>
         <ul class="side-menu">
             <li><a href="#"><i class='bx bxs-cog'></i><span class="text">Settings</span></a></li>
             <li><a href="../../login/logout.php" class="logout"><i class='bx bxs-log-out-circle'></i><span class="text">Logout</span></a></li>
@@ -134,4 +136,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </section>
     <!-- CONTENU -->
 </body>
+
 </html>

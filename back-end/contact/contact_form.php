@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Charger l'autoloader de Composer
-require_once '../../vendor/autoload.php'; 
+require_once '../../vendor/autoload.php';
 
 
 // Définir l'en-tête de la réponse en JSON

@@ -80,19 +80,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <ul class="side-menu top">
             <li class="active">
                 <a href="employe_dashboard.php">
-                <i class='bx bxs-comment-check' ></i>
+                    <i class='bx bxs-comment-check'></i>
                     <span class="text">Valider un avis</span>
                 </a>
             </li>
             <li>
                 <a href="view_service.php">
-                <i class='bx bxs-doughnut-chart'></i>
+                    <i class='bx bxs-doughnut-chart'></i>
                     <span class="text">Service</span>
                 </a>
             </li>
             <li>
                 <a href="add_animal_food.php">
-                <i class='bx bxs-add-to-queue' ></i>
+                    <i class='bx bxs-add-to-queue'></i>
                     <span class="text">Ajout de nourriture</span>
                 </a>
             </li>
@@ -105,15 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
                 <a href="../../login/logout.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                    <span class="text">Déconnexion</span>
                 </a>
             </li>
         </ul>
@@ -137,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <form action="" method="POST">
                         <input type="hidden" name="comment_id" value="<?php echo htmlspecialchars($comment['id']); ?>">
-                        
+
                         <div class="mb-3">
                             <label for="status" class="form-label">Statut:</label>
                             <select class="form-control" id="status" name="status" required>
@@ -149,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <button type="submit" class="btn btn-success submit">Mettre à jour le statut</button>
                     </form>
-                    
+
                 </div>
             </div>
         </main>

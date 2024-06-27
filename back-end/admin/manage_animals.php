@@ -3,14 +3,16 @@ session_start();
 require_once('../config/db_connect.php');
 
 // Fonction pour vérifier le type MIME
-function checkMimeType($file) {
+function checkMimeType($file)
+{
     $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
     $file_mime_type = mime_content_type($file['tmp_name']);
     return in_array($file_mime_type, $allowed_types);
 }
 
 // Fonction pour nettoyer le nom du fichier
-function sanitizeFileName($filename) {
+function sanitizeFileName($filename)
+{
     $filename = preg_replace('/[^a-zA-Z0-9._-]/', '_', $filename);
     return $filename;
 }
@@ -123,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
                 <li>
                     <a href="manage_habitats.php">
-                    <i class='bx bxs-home-smile'></i>
+                        <i class='bx bxs-home-smile'></i>
                         <span class="text">Habitats</span>
                     </a>
                 </li>
@@ -133,8 +135,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="text">Animaux</span>
                     </a>
                 </li>
-           
-                </ul>
+
+            </ul>
             <ul class="side-menu">
                 <li>
                     <a href="#">
@@ -179,9 +181,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
 
                         <!-- Formulaire de création d'utilisateur -->
-              
-        <!-- Formulaire de création d'animal -->
-        <form action="manage_animals.php" method="post" enctype="multipart/form-data">
+
+                        <!-- Formulaire de création d'animal -->
+                        <form action="manage_animals.php" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nom de l'animal</label>
                                 <input type="text" class="form-control" id="name" name="name" required>
@@ -205,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <option value="8">L'Océan</option>
                                     <option value="9">La Steppe</option>
 
-                                    
+
                                     <!-- Ajoutez d'autres options si nécessaire -->
                                 </select>
                             </div>

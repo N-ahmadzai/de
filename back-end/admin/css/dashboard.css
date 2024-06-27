@@ -422,10 +422,10 @@ body {
 	align-items: center;
 }
 
-.bxl-baidu,.bxs-group, .bxs-home-circle{
+/* .bxl-baidu,.bxs-group, .bxs-home-circle{
 	color: var(--light) !important;
 	background-color: var(--green) !important;
-}
+} */
 #content main .box-info li:nth-child(1) .bx {
 	background: var(--light-green);
 	color: var(--green);

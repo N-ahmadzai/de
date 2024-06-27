@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"] !== 'veterinaire'){
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"] !== 'veterinaire') {
     header("location: ../login.php");
     exit;
 }
@@ -16,6 +16,7 @@ mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <title>Voir les nourrissages</title>
     <meta charset="UTF-8">
@@ -25,6 +26,7 @@ mysqli_close($conn);
     <link rel="stylesheet" type="text/css" href="../css/util.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Voir les nourrissages</h1>
@@ -32,24 +34,24 @@ mysqli_close($conn);
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th  scope="col">ID</th>
-                    <th  scope="col">Animal</th>
-                    <th  scope="col">Employé</th>
-                    <th  scope="col">Nourriture</th>
-                    <th  scope="col">Quantité</th>
-                    <th  scope="col">Date et heure</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Animal</th>
+                    <th scope="col">Employé</th>
+                    <th scope="col">Nourriture</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Date et heure</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($feedings as $feeding): ?>
-                <tr>
-                    <td><?= $feeding['id'] ?></td>
-                    <td><?= $feeding['animal_name'] ?></td>
-                    <td><?= $feeding['employee_email'] ?></td>
-                    <td><?= $feeding['food'] ?></td>
-                    <td><?= $feeding['quantity'] ?></td>
-                    <td><?= $feeding['feeding_time'] ?></td>
-                </tr>
+                <?php foreach ($feedings as $feeding) : ?>
+                    <tr>
+                        <td><?= $feeding['id'] ?></td>
+                        <td><?= $feeding['animal_name'] ?></td>
+                        <td><?= $feeding['employee_email'] ?></td>
+                        <td><?= $feeding['food'] ?></td>
+                        <td><?= $feeding['quantity'] ?></td>
+                        <td><?= $feeding['feeding_time'] ?></td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -58,4 +60,5 @@ mysqli_close($conn);
     <script src="../vendor/bootstrap/js/popper.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 </html>

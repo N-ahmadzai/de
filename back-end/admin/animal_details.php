@@ -1,4 +1,3 @@
-
 <!-- Affichage des Détails de l'Animal avec les Rapports Vétérinaires et les Avis des Visiteurs -->
 <?php
 require_once('../config/db_connect.php');
@@ -23,7 +22,6 @@ if (isset($_GET['id'])) {
         $stmt = $pdo->prepare("SELECT * FROM reviews WHERE animal_id = ? AND approved = 1");
         $stmt->execute([$animal_id]);
         $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
         exit();
@@ -36,10 +34,12 @@ if (isset($_GET['id'])) {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Détails de l'animal</title>
 </head>
+
 <body>
     <h2>Détails de l'animal</h2>
     <p><strong>Nom :</strong> <?php echo htmlspecialchars($animal['name']); ?></p>
@@ -48,36 +48,37 @@ if (isset($_GET['id'])) {
     <p><strong>Description :</strong> <?php echo htmlspecialchars($animal['description']); ?></p>
 
     <h2>Rapports vétérinaires</h2>
-    <?php if (count($reports) > 0): ?>
+    <?php if (count($reports) > 0) : ?>
         <ul>
-            <?php foreach ($reports as $report): ?>
+            <?php foreach ($reports as $report) : ?>
                 <li>
                     <p><strong>État :</strong> <?php echo htmlspecialchars($report['status']); ?></p>
                     <p><strong>Nourriture :</strong> <?php echo htmlspecialchars($report['food']); ?></p>
                     <p><strong>Grammage :</strong> <?php echo htmlspecialchars($report['food_weight']); ?>g</p>
                     <p><strong>Date de passage :</strong> <?php echo htmlspecialchars($report['visit_date']); ?></p>
-                    <?php if (!empty($report['details'])): ?>
+                    <?php if (!empty($report['details'])) : ?>
                         <p><strong>Détails :</strong> <?php echo htmlspecialchars($report['details']); ?></p>
                     <?php endif; ?>
                 </li>
             <?php endforeach; ?>
         </ul>
-    <?php else: ?>
+    <?php else : ?>
         <p>Aucun rapport vétérinaire disponible.</p>
     <?php endif; ?>
 
     <h2>Avis des visiteurs</h2>
-    <?php if (count($reviews) > 0): ?>
+    <?php if (count($reviews) > 0) : ?>
         <ul>
-            <?php foreach ($reviews as $review): ?>
+            <?php foreach ($reviews as $review) : ?>
                 <li>
                     <p><strong>Pseudo :</strong> <?php echo htmlspecialchars($review['pseudo']); ?></p>
                     <p><strong>Avis :</strong> <?php echo htmlspecialchars($review['comment']); ?></p>
                 </li>
             <?php endforeach; ?>
         </ul>
-    <?php else: ?>
+    <?php else : ?>
         <p>Aucun avis disponible.</p>
     <?php endif; ?>
 </body>
+
 </html>

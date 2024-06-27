@@ -46,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container-fluid">
         <!-- SIDEBAR -->
         <section id="sidebar">
-        <a href="admin_dashboard.php" class="brand">
-        <i class='bx bxs-smile'></i>
-            <span class="text">Arcadia</span>
-        </a>
+            <a href="admin_dashboard.php" class="brand">
+                <i class='bx bxs-smile'></i>
+                <span class="text">Arcadia</span>
+            </a>
             <ul class="side-menu top">
                 <li>
                     <a href="admin_dashboard.php">
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </li>
                 <li>
                     <a href="manage_user.php">
-                    <i class='bx bxs-user-account' ></i>
+                        <i class='bx bxs-user-account'></i>
                         <span class="text">Membres</span>
                     </a>
                 </li>
@@ -70,14 +70,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </a>
                 </li>
                 <li class="active">
-                    <a href=""manage_horaires.php>
-                    <i class='bx bxs-hourglass' ></i>
+                    <a href="" manage_horaires.php>
+                        <i class='bx bxs-hourglass'></i>
                         <span class="text">Horaires</span>
                     </a>
                 </li>
                 <li>
                     <a href="manage_habitats.php">
-                    <i class='bx bxs-home-smile'></i>
+                        <i class='bx bxs-home-smile'></i>
                         <span class="text">Habitats</span>
                     </a>
                 </li>
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- CONTENU -->
         <section id="content">
             <main>
-            <div class="head-title">
+                <div class="head-title">
                     <div class="left">
                         <h1>Gérer les horaires</h1>
                         <ul class="breadcrumb">
@@ -132,31 +132,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
 
 
-       
-            <form method="POST" action="update_horaires.php">
-            <input type="hidden" name="id" value="<?php echo htmlspecialchars($horaire['id']); ?>">
-            <div class="mb-3">
-                <label class="form-label" for="jour_semaine">Jour de la semaine :</label>
-                <select class="form-select" name="jour_semaine" id="jour_semaine">
-                    <option value="Lundi" <?php if ($horaire['jour_semaine'] == 'Lundi') echo 'selected'; ?>>Lundi</option>
-                    <option value="Mardi" <?php if ($horaire['jour_semaine'] == 'Mardi') echo 'selected'; ?>>Mardi</option>
-                    <option value="Mercredi" <?php if ($horaire['jour_semaine'] == 'Mercredi') echo 'selected'; ?>>Mercredi</option>
-                    <option value="Jeudi" <?php if ($horaire['jour_semaine'] == 'Jeudi') echo 'selected'; ?>>Jeudi</option>
-                    <option value="Vendredi" <?php if ($horaire['jour_semaine'] == 'Vendredi') echo 'selected'; ?>>Vendredi</option>
-                    <option value="Samedi" <?php if ($horaire['jour_semaine'] == 'Samedi') echo 'selected'; ?>>Samedi</option>
-                    <option value="Dimanche" <?php if ($horaire['jour_semaine'] == 'Dimanche') echo 'selected'; ?>>Dimanche</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="heure_ouverture">Heure d'ouverture :</label>
-                <input class="form-control" type="time" id="heure_ouverture" name="heure_ouverture" value="<?php echo htmlspecialchars($horaire['heure_ouverture']); ?>" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="heure_fermeture">Heure de fermeture :</label>
-                <input class="form-control" type="time" id="heure_fermeture" name="heure_fermeture" value="<?php echo htmlspecialchars($horaire['heure_fermeture']); ?>" required>
-            </div>
-            <button class="btn btn-success" type="submit">Modifier Horaire</button>
-        </form>
+
+                        <form method="POST" action="update_horaires.php">
+                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($horaire['id']); ?>">
+                            <div class="mb-3">
+                                <label class="form-label" for="jour_semaine">Jour de la semaine :</label>
+                                <select class="form-select" name="jour_semaine" id="jour_semaine">
+                                    <option value="Lundi" <?php if ($horaire['jour_semaine'] == 'Lundi') echo 'selected'; ?>>Lundi</option>
+                                    <option value="Mardi" <?php if ($horaire['jour_semaine'] == 'Mardi') echo 'selected'; ?>>Mardi</option>
+                                    <option value="Mercredi" <?php if ($horaire['jour_semaine'] == 'Mercredi') echo 'selected'; ?>>Mercredi</option>
+                                    <option value="Jeudi" <?php if ($horaire['jour_semaine'] == 'Jeudi') echo 'selected'; ?>>Jeudi</option>
+                                    <option value="Vendredi" <?php if ($horaire['jour_semaine'] == 'Vendredi') echo 'selected'; ?>>Vendredi</option>
+                                    <option value="Samedi" <?php if ($horaire['jour_semaine'] == 'Samedi') echo 'selected'; ?>>Samedi</option>
+                                    <option value="Dimanche" <?php if ($horaire['jour_semaine'] == 'Dimanche') echo 'selected'; ?>>Dimanche</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="heure_ouverture">Heure d'ouverture :</label>
+                                <input class="form-control" type="time" id="heure_ouverture" name="heure_ouverture" value="<?php echo htmlspecialchars($horaire['heure_ouverture']); ?>" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="heure_fermeture">Heure de fermeture :</label>
+                                <input class="form-control" type="time" id="heure_fermeture" name="heure_fermeture" value="<?php echo htmlspecialchars($horaire['heure_fermeture']); ?>" required>
+                            </div>
+                            <button class="btn btn-success" type="submit">Modifier Horaire</button>
+                        </form>
             </main>
         </section>
         <!-- CONTENU -->

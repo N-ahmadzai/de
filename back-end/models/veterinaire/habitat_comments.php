@@ -74,7 +74,7 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === 'veterinaire') {
             </li>
             <li class="active">
                 <a href="habitat_comments.php">
-                <i class='bx bxs-comment-detail' ></i>
+                    <i class='bx bxs-comment-detail'></i>
                     <span class="text">Commentaires</span>
                 </a>
             </li>
@@ -88,15 +88,9 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === 'veterinaire') {
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Settings</span>
-                </a>
-            </li>
-            <li>
                 <a href="../../login/logout.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                    <span class="text">Déconnexion</span>
                 </a>
             </li>
         </ul>
@@ -153,26 +147,26 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === 'veterinaire') {
 
 
                     <?php if (isset($_SESSION['success_message'])) : ?>
-                <div class="alert alert-success">
-                    <?php echo htmlspecialchars($_SESSION['success_message']); ?>
-                    <?php unset($_SESSION['success_message']); ?>
-                </div>
-            <?php endif; ?>
+                        <div class="alert alert-success">
+                            <?php echo htmlspecialchars($_SESSION['success_message']); ?>
+                            <?php unset($_SESSION['success_message']); ?>
+                        </div>
+                    <?php endif; ?>
 
-            <?php if (isset($_SESSION['error_message'])) : ?>
-                <div class="alert alert-danger">
-                    <?php echo htmlspecialchars($_SESSION['error_message']); ?>
-                    <?php unset($_SESSION['error_message']); ?>
-                </div>
-            <?php endif; ?>
+                    <?php if (isset($_SESSION['error_message'])) : ?>
+                        <div class="alert alert-danger">
+                            <?php echo htmlspecialchars($_SESSION['error_message']); ?>
+                            <?php unset($_SESSION['error_message']); ?>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="order mt-4">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th  scope="col">Habitat</th>
-                                    <th  scope="col">Commentaire</th>
-                                    <th  scope="col">Action</th>
+                                    <th scope="col">Habitat</th>
+                                    <th scope="col">Commentaire</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

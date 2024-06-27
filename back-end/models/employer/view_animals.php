@@ -75,71 +75,71 @@ $current_page_animals = array_slice($filtered_animals, $start_index, $animals_pe
         <?php endif; ?>
 
         <div class="container">
-                        <!-- Formulaire de recherche -->
-                        <form class="search-form" method="GET" action="">
-                            <input type="text" class="mb-3" name="search" placeholder="Rechercher par nom ou race" value="<?php echo htmlspecialchars($search_query); ?>">
-                            <button type="submit"><i class='bx bx-search'></i></button>
-                        </form>
+            <!-- Formulaire de recherche -->
+            <form class="search-form" method="GET" action="">
+                <input type="text" class="mb-3" name="search" placeholder="Rechercher par nom ou race" value="<?php echo htmlspecialchars($search_query); ?>">
+                <button type="submit"><i class='bx bx-search'></i></button>
+            </form>
 
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Race</th>
-                                    <th scope="col">Photo</th>
-                                    <th scope="col">Habitat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (count($current_page_animals) > 0) : ?>
-                                    <?php foreach ($current_page_animals as $animal) : ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($animal['id']); ?></td>
-                                            <td><?php echo htmlspecialchars($animal['name']); ?></td>
-                                            <td><?php echo htmlspecialchars($animal['race']); ?></td>
-                                            <td>
-                                                <?php if (!empty($animal['image_url'])) : ?>
-                                                    <?php $imagePath = "../../admin/" . htmlspecialchars($animal['image_url']); ?>
-                                                    <?php if (file_exists($imagePath)) : ?>
-                                                        <img src="<?php echo $imagePath; ?>" alt="Image de l'animal" width="50">
-                                                    <?php else : ?>
-                                                        Image introuvable
-                                                    <?php endif; ?>
-                                                <?php else : ?>
-                                                    Pas de photo
-                                                <?php endif; ?>
-                                            </td>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Race</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Habitat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($current_page_animals) > 0) : ?>
+                        <?php foreach ($current_page_animals as $animal) : ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($animal['id']); ?></td>
+                                <td><?php echo htmlspecialchars($animal['name']); ?></td>
+                                <td><?php echo htmlspecialchars($animal['race']); ?></td>
+                                <td>
+                                    <?php if (!empty($animal['image_url'])) : ?>
+                                        <?php $imagePath = "../../admin/" . htmlspecialchars($animal['image_url']); ?>
+                                        <?php if (file_exists($imagePath)) : ?>
+                                            <img src="<?php echo $imagePath; ?>" alt="Image de l'animal" width="50">
+                                        <?php else : ?>
+                                            Image introuvable
+                                        <?php endif; ?>
+                                    <?php else : ?>
+                                        Pas de photo
+                                    <?php endif; ?>
+                                </td>
 
 
-                                            <td><?php echo htmlspecialchars($animal['habitat_name']); ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                <?php else : ?>
-                                    <tr>
-                                        <td colspan="5">Aucun animal trouvé</td>
-                                    </tr>
-                                <?php endif; ?>
-                            </tbody>
-                        </table>
+                                <td><?php echo htmlspecialchars($animal['habitat_name']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="5">Aucun animal trouvé</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
 
-                        <!-- Liens de pagination -->
-                        <div class="pagination">
-                            <?php if ($current_page > 1) : ?>
-                                <a href="?page=<?php echo $current_page - 1; ?>&search=<?php echo urlencode($search_query); ?>">&laquo; Précédent</a>
-                            <?php endif; ?>
+            <!-- Liens de pagination -->
+            <div class="pagination">
+                <?php if ($current_page > 1) : ?>
+                    <a href="?page=<?php echo $current_page - 1; ?>&search=<?php echo urlencode($search_query); ?>">&laquo; Précédent</a>
+                <?php endif; ?>
 
-                            <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
-                                <a href="?page=<?php echo $page; ?>&search=<?php echo urlencode($search_query); ?>" <?php if ($page == $current_page) echo 'class="active"'; ?>>
-                                    <?php echo $page; ?>
-                                </a>
-                            <?php endfor; ?>
+                <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
+                    <a href="?page=<?php echo $page; ?>&search=<?php echo urlencode($search_query); ?>" <?php if ($page == $current_page) echo 'class="active"'; ?>>
+                        <?php echo $page; ?>
+                    </a>
+                <?php endfor; ?>
 
-                            <?php if ($current_page < $total_pages) : ?>
-                                <a href="?page=<?php echo $current_page + 1; ?>&search=<?php echo urlencode($search_query); ?>">Suivant &raquo;</a>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+                <?php if ($current_page < $total_pages) : ?>
+                    <a href="?page=<?php echo $current_page + 1; ?>&search=<?php echo urlencode($search_query); ?>">Suivant &raquo;</a>
+                <?php endif; ?>
+            </div>
+        </div>
 </body>
 
 </html>

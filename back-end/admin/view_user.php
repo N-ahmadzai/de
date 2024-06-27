@@ -69,39 +69,39 @@ $current_page_users = array_slice($filtered_users, $start_index, $users_per_page
     </form>
 
     <table class="table table-hover table-bordered">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Email</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Rôle</th>
-        <th scope="col">Spécialité vétérinaire</th>
-        <th scope="col">Département de l'employé</th>
-        <th scope="col">Actions</th>
-    </tr>
-</thead>
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Rôle</th>
+                <th scope="col">Spécialité vétérinaire</th>
+                <th scope="col">Département de l'employé</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
 
         <tbody>
-        <?php if (count($current_page_users) > 0) : ?>
-    <?php foreach ($current_page_users as $user) : ?>
-        <tr>
-            <td><?php echo htmlspecialchars($user['id']); ?></td>
-            <td><?php echo htmlspecialchars($user['email']); ?></td>
-            <td><?php echo htmlspecialchars($user['name']); ?></td>
-            <td><?php echo htmlspecialchars($user['role']); ?></td>
-            <td><?php echo isset($user['vet_specialty']) ? htmlspecialchars($user['vet_specialty']) : ''; ?></td>
-            <td><?php echo isset($user['employee_department']) ? htmlspecialchars($user['employee_department']) : ''; ?></td>
-            <td class="actions">
-                <a href="update_user.php?id=<?php echo $user['id']; ?>" ><i class='bx bx-edit'></i></a>
-                <a href="delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');"><i class='bx bxs-trash'></i></a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-<?php else : ?>
-    <tr>
-        <td colspan="7">Aucun utilisateur trouvé</td>
-    </tr>
-<?php endif; ?>
+            <?php if (count($current_page_users) > 0) : ?>
+                <?php foreach ($current_page_users as $user) : ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($user['id']); ?></td>
+                        <td><?php echo htmlspecialchars($user['email']); ?></td>
+                        <td><?php echo htmlspecialchars($user['name']); ?></td>
+                        <td><?php echo htmlspecialchars($user['role']); ?></td>
+                        <td><?php echo isset($user['vet_specialty']) ? htmlspecialchars($user['vet_specialty']) : ''; ?></td>
+                        <td><?php echo isset($user['employee_department']) ? htmlspecialchars($user['employee_department']) : ''; ?></td>
+                        <td class="actions">
+                            <a href="update_user.php?id=<?php echo $user['id']; ?>"><i class='bx bx-edit'></i></a>
+                            <a href="delete_user.php?id=<?php echo $user['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');"><i class='bx bxs-trash'></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="7">Aucun utilisateur trouvé</td>
+                </tr>
+            <?php endif; ?>
 
         </tbody>
     </table>

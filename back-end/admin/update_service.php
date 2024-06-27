@@ -108,10 +108,10 @@ try {
     <div class="container-fluid">
         <!-- SIDEBAR -->
         <section id="sidebar">
-        <a href="admin_dashboard.php" class="brand">
-        <i class='bx bxs-smile'></i>
-            <span class="text">Arcadia</span>
-        </a>
+            <a href="admin_dashboard.php" class="brand">
+                <i class='bx bxs-smile'></i>
+                <span class="text">Arcadia</span>
+            </a>
             <ul class="side-menu top">
                 <li>
                     <a href="admin_dashboard.php">
@@ -121,7 +121,7 @@ try {
                 </li>
                 <li>
                     <a href="manage_user.php">
-                    <i class='bx bxs-user-account' ></i>
+                        <i class='bx bxs-user-account'></i>
                         <span class="text">Membres</span>
                     </a>
                 </li>
@@ -132,14 +132,14 @@ try {
                     </a>
                 </li>
                 <li>
-                    <a href=""manage_horaires.php>
-                    <i class='bx bxs-hourglass' ></i>
+                    <a href="" manage_horaires.php>
+                        <i class='bx bxs-hourglass'></i>
                         <span class="text">Horaires</span>
                     </a>
                 </li>
                 <li>
                     <a href="manage_habitats.php">
-                    <i class='bx bxs-home-smile'></i>
+                        <i class='bx bxs-home-smile'></i>
                         <span class="text">Habitats</span>
                     </a>
                 </li>
@@ -170,7 +170,7 @@ try {
         <!-- CONTENU -->
         <section id="content">
             <main>
-            <div class="head-title">
+                <div class="head-title">
                     <div class="left">
                         <h1>Gérer les services</h1>
                         <ul class="breadcrumb">
@@ -194,24 +194,24 @@ try {
                         </div>
 
 
-       
-        <form method="POST" action="update_service.php" enctype="multipart/form-data">
-            <input type="hidden" name="service_id" value="<?php echo $service['id']; ?>">
-            <div class="mb-3">
-                <label for="name" class="form-label">Nom du service:</label>
-                <input class="form-control" type="text" id="name" name="name" value="<?php echo htmlspecialchars($service['name']); ?>">
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description:</label>
-                <textarea class="form-control" id="description" name="description" rows="3"><?php echo htmlspecialchars($service['description']); ?></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="photo" class="form-label">Choisir un fichier:</label>
-                <input class="form-control" type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png, .gif" required>
-            </div>
-            <button class="btn btn-success submit" type="submit">Mettre à jour</button>
-        </form>
-        
+
+                        <form method="POST" action="update_service.php" enctype="multipart/form-data">
+                            <input type="hidden" name="service_id" value="<?php echo $service['id']; ?>">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom du service:</label>
+                                <input class="form-control" type="text" id="name" name="name" value="<?php echo htmlspecialchars($service['name']); ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"><?php echo htmlspecialchars($service['description']); ?></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="photo" class="form-label">Choisir un fichier:</label>
+                                <input class="form-control" type="file" id="photo" name="photo" accept=".jpg, .jpeg, .png, .gif" required>
+                            </div>
+                            <button class="btn btn-success submit" type="submit">Mettre à jour</button>
+                        </form>
+
                     </div>
             </main>
         </section>

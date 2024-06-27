@@ -71,7 +71,7 @@ try {
                         <td><?php echo htmlspecialchars($comment['status']); ?></td>
                         <td>
                             <a href="approve_comment.php?id=<?php echo $comment['id']; ?>" style="color:#2EB872;"><i class='bx bx-edit'></i></a>
-                            <a href="delete_comment.php?id=<?php echo $comment['id']; ?>" style="color:#2EB872;"  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');"><i class='bx bx-trash'></i></a>
+                            <a href="delete_comment.php?id=<?php echo $comment['id']; ?>" style="color:#2EB872;" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');"><i class='bx bx-trash'></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -18,6 +18,7 @@ try {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +27,7 @@ try {
     <title>Visualiser Nourriture d'Animal</title>
     <link rel="stylesheet" href="../../admin/css/employer.css">
 </head>
+
 <body>
     <!-- SIDEBAR -->
     <section id="sidebar">
@@ -34,11 +36,11 @@ try {
             <span class="text">Arcadia</span>
         </a>
         <ul class="side-menu top">
-            <li><a href="employe_dashboard.php"><i class='bx bxs-comment-check' ></i><span class="text">Valider un avis</span></a></li>
+            <li><a href="employe_dashboard.php"><i class='bx bxs-comment-check'></i><span class="text">Valider un avis</span></a></li>
             <li><a href="view_service.php"><i class='bx bxs-doughnut-chart'></i><span class="text">Service</span></a></li>
-            <li><a href="add_animal_food.php"><i class='bx bxs-add-to-queue' ></i><span class="text">Ajout de nourriture</span></a></li>
-            <li><a href="list_animal_food.php"><i class='bx bx-food-tag' ></i><span class="text">Liste des Nourritures</span></a></li>
-            <li class="active"><a href="view_animal_food.php"><i class='bx bxl-baidu' ></i><span class="text">Voir l'animal</span></a></li>
+            <li><a href="add_animal_food.php"><i class='bx bxs-add-to-queue'></i><span class="text">Ajout de nourriture</span></a></li>
+            <li><a href="list_animal_food.php"><i class='bx bx-food-tag'></i><span class="text">Liste des Nourritures</span></a></li>
+            <li class="active"><a href="view_animal_food.php"><i class='bx bxl-baidu'></i><span class="text">Voir l'animal</span></a></li>
         </ul>
         <ul class="side-menu">
             <li><a href="#"><i class='bx bxs-cog'></i><span class="text">Settings</span></a></li>
@@ -66,12 +68,12 @@ try {
                         <h3>Détails de la nourriture</h3>
                     </div>
                     <!-- Détails de la nourriture -->
-                    <?php if ($food): ?>
+                    <?php if ($food) : ?>
                         <p>ID de l'Animal: <?php echo htmlspecialchars($food['animal_id']); ?></p>
                         <p>Nourriture: <?php echo htmlspecialchars($food['food']); ?></p>
                         <p>Poids de la Nourriture (g): <?php echo htmlspecialchars($food['food_weight']); ?></p>
                         <p>Date: <?php echo htmlspecialchars($food['date']); ?></p>
-                    <?php else: ?>
+                    <?php else : ?>
                         <p>Nourriture introuvable.</p>
                     <?php endif; ?>
 
@@ -94,5 +96,5 @@ try {
     </section>
     <!-- CONTENU -->
 </body>
+
 </html>
-                        

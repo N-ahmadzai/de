@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/horaire.css">
 </head>
+
 <body>
     <div class="container-fluid">
         <!-- SIDEBAR -->
@@ -75,10 +77,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </li>
                 <li>
                     <a href="manage_habitats.php">
-                    <i class='bx bxs-home-smile'></i>
+                        <i class='bx bxs-home-smile'></i>
                         <span class="text">Habitats</span>
                     </a>
-                </li> 
+                </li>
                 <li>
                     <a href="manage_animals.php">
                         <i class='bx bxl-baidu'></i>
@@ -124,8 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="table-data">
                     <div class="order">
                         <div class="head">
-                        <a href="manage_horaires.php">
-                        <h3>Ajouter un nouvel horaire</h3>
+                            <a href="manage_horaires.php">
+                                <h3>Ajouter un nouvel horaire</h3>
                             </a>
                         </div>
                         <!-- Formulaire de création d'utilisateur -->
@@ -152,9 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <button class="btn btn-success submit" type="submit">Ajouter Horaire</button>
                         </form>
-                   
 
-                    <?php if (isset($_SESSION['success_message'])) : ?>
+
+                        <?php if (isset($_SESSION['success_message'])) : ?>
                             <div class="alert alert-success mt-3">
                                 <?php echo htmlspecialchars($_SESSION['success_message']); ?>
                             </div>
@@ -205,4 +207,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- CONTENU -->
     </div>
 </body>
+
 </html>

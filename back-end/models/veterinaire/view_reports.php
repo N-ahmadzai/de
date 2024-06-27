@@ -61,73 +61,73 @@ $current_page_reports = array_slice($filtered_reports, $start_index, $reports_pe
 </head>
 
 <body>
-<!-- Formulaire de recherche -->
- <form class="search-form" method="GET" action="">
+    <!-- Formulaire de recherche -->
+    <form class="search-form" method="GET" action="">
         <input type="text" name="search" placeholder="Rechercher par statut ou nourriture" value="<?php echo htmlspecialchars($search_query); ?>" class="form-control">
         <button type="submit" class="btn btn-primary"><i class='bx bx-search'></i> Rechercher</button>
     </form>
 
     <table class="table table-hover">
-            <thead>
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">ID de l'animal</th>
+                <th scope="col">État de l'animal</th>
+                <th scope="col">Nourriture</th>
+                <th scope="col">Grammage de la nourriture</th>
+                <th scope="col">Date de passage</th>
+                <th scope="col">Détails</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($current_page_reports as $report) : ?>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">ID de l'animal</th>
-                    <th scope="col">État de l'animal</th>
-                    <th scope="col">Nourriture</th>
-                    <th scope="col">Grammage de la nourriture</th>
-                    <th scope="col">Date de passage</th>
-                    <th scope="col">Détails</th>
-                    <th scope="col">Actions</th>
+                    <td><?php echo htmlspecialchars($report['id']); ?></td>
+                    <td><?php echo htmlspecialchars($report['animal_id']); ?></td>
+                    <td><?php echo htmlspecialchars($report['animal_status']); ?></td>
+                    <td><?php echo htmlspecialchars($report['animal_food']); ?></td>
+                    <td><?php echo htmlspecialchars($report['animal_food_weight']); ?></td>
+                    <td><?php echo htmlspecialchars($report['visit_date']); ?></td>
+                    <td><?php echo htmlspecialchars($report['details']); ?></td>
+                    <td class="actions">
+                        <a href="update_report.php?id=<?php echo $report['id']; ?>"><i class='bx bx-edit'></i></a>
+                        <a href="delete_report.php?id=<?php echo $report['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce rapport ?');"><i class='bx bxs-trash'></i></a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($current_page_reports as $report) : ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($report['id']); ?></td>
-                        <td><?php echo htmlspecialchars($report['animal_id']); ?></td>
-                        <td><?php echo htmlspecialchars($report['animal_status']); ?></td>
-                        <td><?php echo htmlspecialchars($report['animal_food']); ?></td>
-                        <td><?php echo htmlspecialchars($report['animal_food_weight']); ?></td>
-                        <td><?php echo htmlspecialchars($report['visit_date']); ?></td>
-                        <td><?php echo htmlspecialchars($report['details']); ?></td>
-                        <td class="actions">
-                            <a href="update_report.php?id=<?php echo $report['id']; ?>"><i class='bx bx-edit'></i></a>
-                            <a href="delete_report.php?id=<?php echo $report['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce rapport ?');"><i class='bx bxs-trash'></i></a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
     <!-- Pagination -->
     <div class="pagination">
-            <?php if ($current_page > 1) : ?>
-                <a href="?page=<?php echo $current_page - 1; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary">&laquo; Précédent</a>
-            <?php endif; ?>
+        <?php if ($current_page > 1) : ?>
+            <a href="?page=<?php echo $current_page - 1; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary">&laquo; Précédent</a>
+        <?php endif; ?>
 
-            <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
-                <a href="?page=<?php echo $page; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary <?php if ($page == $current_page) echo 'active'; ?>">
-                    <?php echo $page; ?>
-                </a>
-            <?php endfor; ?>
+        <?php for ($page = 1; $page <= $total_pages; $page++) : ?>
+            <a href="?page=<?php echo $page; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary <?php if ($page == $current_page) echo 'active'; ?>">
+                <?php echo $page; ?>
+            </a>
+        <?php endfor; ?>
 
-            <?php if ($current_page < $total_pages) : ?>
-                <a href="?page=<?php echo $current_page + 1; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary">Suivant &raquo;</a>
-            <?php endif; ?>
+        <?php if ($current_page < $total_pages) : ?>
+            <a href="?page=<?php echo $current_page + 1; ?>&search=<?php echo urlencode($search_query); ?>" class="btn btn-secondary">Suivant &raquo;</a>
+        <?php endif; ?>
+    </div>
+
+    <!-- Affichage des messages -->
+    <?php if (isset($_GET['status']) && $_GET['status'] === 'success') : ?>
+        <div class="alert alert-success mt-3">
+            <?php echo htmlspecialchars($_GET['message']); ?>
         </div>
+    <?php endif; ?>
 
-          <!-- Affichage des messages -->
-          <?php if (isset($_GET['status']) && $_GET['status'] === 'success') : ?>
-            <div class="alert alert-success mt-3">
-                <?php echo htmlspecialchars($_GET['message']); ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if (isset($_GET['status']) && $_GET['status'] === 'error') : ?>
-            <div class="alert alert-danger mt-3">
-                <?php echo htmlspecialchars($_GET['message']); ?>
-            </div>
-        <?php endif; ?>
+    <?php if (isset($_GET['status']) && $_GET['status'] === 'error') : ?>
+        <div class="alert alert-danger mt-3">
+            <?php echo htmlspecialchars($_GET['message']); ?>
+        </div>
+    <?php endif; ?>
 </body>
 
 </html>
