@@ -30,6 +30,3 @@ Ce projet est une application web développée pour le Zoo Arcadia, situé en Fr
    - Ouvrez ce dossier dans Visual Studio Code.
 
 ## Structure du projet
-
-Le projet est organisé de la même manière que dans l'exemple précédent :
-
